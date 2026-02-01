@@ -1,5 +1,11 @@
 import { useState, useCallback } from 'react'
-import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react'
+import {
+  ReactFlow,
+  Background,
+  Controls,
+  applyNodeChanges,
+  applyEdgeChanges,
+  addEdge } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 
 const initialNodes = [
@@ -10,7 +16,8 @@ const initialNodes = [
     },
     data: {
       label: 'Node 1'
-    }
+    },
+    type: 'input'
   },
   {
     id: 'n2',
@@ -27,7 +34,9 @@ const initialEdges = [
   {
     id: 'n1-n2',
     source: 'n1',
-    target: 'n2'
+    target: 'n2',
+    type: 'step',
+    label: 'connects with'
   }
 ];
 
@@ -37,22 +46,32 @@ export default function App() {
 
   const onNodesChange = useCallback(
     changes => setNodes(
-      nodesSnapshot => applyNodeChanges(changes, nodesSnapshot)
+      nodesSnapshot => {
+        console.log('nodesSnapshot', nodesSnapshot)
+        return applyNodeChanges(changes, nodesSnapshot)
+      }
     ),
     [], 
   )
 
   const onEdgesChange = useCallback(
     changes => setEdges(
-      edgesSnapshot => applyEdgeChanges(changes, edgesSnapshot)
+      edgesSnapshot => {
+        console.log('edgesSnapshot', edgesSnapshot)
+        return applyEdgeChanges(changes, edgesSnapshot)
+      }
     ),
     [],
   )
   
   const onConnect = useCallback(
     params => setEdges(
-      edgesSnapshot => addEdge(params, edgesSnapshot)
-    )
+      edgesSnapshot => {
+        console.log('edgesSnapshot', edgesSnapshot)
+        return addEdge(params, edgesSnapshot)
+      }
+    ),
+    []
   )
 
   return (
@@ -64,7 +83,10 @@ export default function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView
-      />
+      >
+        <Background/>
+        <Controls/>
+      </ReactFlow>
     </div>
   )
 
