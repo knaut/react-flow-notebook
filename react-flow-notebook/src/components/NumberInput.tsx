@@ -25,7 +25,7 @@ export function NumberInput({ id, data }) {
 	}, [])
 
 	return (
-		<div className="number-input">
+		<div className="basic-node">
 			<div>{data.label}</div>
 			<input
 				id={`number-${id}`}

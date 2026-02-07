@@ -1,3 +1,491 @@
+/* Color Palette
+ * --purple-dark:  #1D0726  (darkest background)
+ * --purple-mid:   #2F0840  (secondary background)
+ * --green-dark:   #598C4A  (muted accent)
+ * --green-mid:    #73BF50  (primary accent)
+ * --green-bright: #B1F250  (highlight)
+ */
+
+:root {
+	--purple-dark: #1D0726;
+	--purple-mid: #2F0840;
+	--purple-light: #5a3d6a;
+	--green-dark: #598C4A;
+	--green-mid: #73BF50;
+	--green-bright: #B1F250;
+	--font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+}
+
+/* =====================
+   Base / Global Styles
+   ===================== */
+
 body {
 	margin: 0;
+	background-color: var(--purple-dark);
+	font-family: var(--font-mono);
+	font-size: 14px;
+	color: var(--green-bright);
+	line-height: 1.5;
+}
+
+/* =====================
+   Form Elements
+   ===================== */
+
+/* Text inputs, textareas, selects */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select {
+	font-family: var(--font-mono);
+	font-size: 14px;
+	background: var(--purple-dark);
+	border: 1px solid var(--purple-light);
+	border-radius: 4px;
+	padding: 8px 12px;
+	color: var(--green-bright);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="search"]:hover,
+input[type="url"]:hover,
+input[type="tel"]:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+input[type="datetime-local"]:hover,
+textarea:hover,
+select:hover {
+	border-color: var(--green-dark);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="datetime-local"]:focus,
+textarea:focus,
+select:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	border-color: var(--purple-light) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+	color: var(--purple-light);
+	opacity: 1;
+}
+
+/* Number input spinners (webkit) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+/* Custom number input with visible spinners - opt-in class */
+input[type="number"].show-spinners::-webkit-inner-spin-button,
+input[type="number"].show-spinners::-webkit-outer-spin-button {
+	appearance: auto;
+	opacity: 1;
+	background: var(--purple-mid);
+	cursor: pointer;
+}
+
+/* Firefox number input */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+input[type="number"].show-spinners {
+	-moz-appearance: number-input;
+}
+
+/* Select dropdown arrow */
+select {
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2373BF50' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	padding-right: 32px;
+	cursor: pointer;
+}
+
+select option {
+	background: var(--purple-mid);
+	color: var(--green-bright);
+}
+
+/* Buttons */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+	font-family: var(--font-mono);
+	font-size: 14px;
+	background: var(--purple-mid);
+	border: 1px solid var(--purple-light);
+	border-radius: 4px;
+	padding: 8px 16px;
+	color: var(--green-bright);
+	cursor: pointer;
+	transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+	background: var(--green-dark);
+	border-color: var(--green-mid);
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus {
+	outline: none;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+	background: var(--green-mid);
+	color: var(--purple-dark);
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Checkboxes and Radios */
+input[type="checkbox"],
+input[type="radio"] {
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	background: var(--purple-dark);
+	border: 1px solid var(--purple-light);
+	cursor: pointer;
+	vertical-align: middle;
+	position: relative;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="checkbox"] {
+	border-radius: 4px;
+}
+
+input[type="radio"] {
+	border-radius: 50%;
+}
+
+input[type="checkbox"]:hover,
+input[type="radio"]:hover {
+	border-color: var(--green-dark);
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+	outline: none;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+	background: var(--green-mid);
+	border-color: var(--green-mid);
+}
+
+input[type="checkbox"]:checked::after {
+	content: '';
+	position: absolute;
+	left: 5px;
+	top: 2px;
+	width: 5px;
+	height: 9px;
+	border: solid var(--purple-dark);
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+input[type="radio"]:checked::after {
+	content: '';
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 6px;
+	height: 6px;
+	background: var(--purple-dark);
+	border-radius: 50%;
+}
+
+/* Range slider */
+input[type="range"] {
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+	height: 20px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+	background: var(--purple-light);
+	height: 6px;
+	border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	background: var(--green-mid);
+	border-radius: 50%;
+	margin-top: -5px;
+	transition: background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+	background: var(--green-bright);
+}
+
+input[type="range"]::-moz-range-track {
+	background: var(--purple-light);
+	height: 6px;
+	border-radius: 3px;
+}
+
+input[type="range"]::-moz-range-thumb {
+	width: 16px;
+	height: 16px;
+	background: var(--green-mid);
+	border: none;
+	border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+	background: var(--green-bright);
+}
+
+input[type="range"]:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+/* Labels */
+label {
+	color: var(--green-bright);
+	font-family: var(--font-mono);
+	cursor: pointer;
+}
+
+/* Fieldset and Legend */
+fieldset {
+	border: 1px solid var(--purple-light);
+	border-radius: 6px;
+	padding: 16px;
+	margin: 0 0 16px 0;
+}
+
+legend {
+	color: var(--green-mid);
+	font-family: var(--font-mono);
+	padding: 0 8px;
+}
+
+/* =====================
+   React Flow Theming
+   ===================== */
+.react-flow {
+	--xy-background-color: var(--purple-dark);
+
+	/* Nodes */
+	--xy-node-background-color: var(--purple-mid);
+	--xy-node-background-color-default: var(--purple-mid);
+	--xy-node-border-radius: 6px;
+	--xy-node-border: 1px solid var(--purple-light);
+	--xy-node-border-default: 1px solid var(--purple-light);
+	--xy-node-color: var(--green-bright);
+	--xy-node-color-default: var(--green-bright);
+	--xy-node-boxshadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+	--xy-node-boxshadow-selected: 0 0 0 2px var(--green-mid), 0 4px 12px rgba(0, 0, 0, 0.3);
+
+	/* Handles */
+	--xy-handle-background-color: var(--green-mid);
+	--xy-handle-border-color: var(--green-bright);
+
+	/* Edges */
+	--xy-edge-stroke: var(--green-dark);
+	--xy-edge-stroke-default: var(--green-dark);
+	--xy-edge-stroke-selected: var(--green-bright);
+	--xy-edge-stroke-width: 2px;
+	--xy-edge-stroke-width-default: 2px;
+
+	/* Connection line */
+	--xy-connectionline-stroke: var(--green-mid);
+	--xy-connectionline-stroke-width: 2px;
+
+	/* Attribution (hide or style) */
+	--xy-attribution-background-color: transparent;
+
+	/* Minimap */
+	--xy-minimap-background-color: var(--purple-mid);
+	--xy-minimap-mask-background-color: rgba(29, 7, 38, 0.7);
+
+	/* Controls */
+	--xy-controls-button-background-color: var(--purple-mid);
+	--xy-controls-button-background-color-hover: var(--green-dark);
+	--xy-controls-button-color: var(--green-bright);
+	--xy-controls-button-color-hover: var(--green-bright);
+	--xy-controls-button-border-color: var(--green-dark);
+}
+
+/* Background dots */
+.react-flow__background pattern circle {
+	fill: var(--green-dark);
+}
+
+/* Node classes */
+.react-flow__node {
+	font-family: var(--font-mono);
+	color: var(--green-bright);
+	border-color: var(--purple-light);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.react-flow__node.selected {
+	box-shadow: 0 0 0 2px var(--green-mid), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Handles */
+.react-flow__handle {
+	background: var(--green-mid);
+	border-color: var(--green-bright);
+}
+
+.react-flow__handle-connecting {
+	background: var(--green-bright);
+}
+
+.react-flow__handle-valid {
+	background: var(--green-bright);
+}
+
+/* Edges */
+.react-flow__edge-path {
+	stroke: var(--green-dark);
+}
+
+.react-flow__edge-text {
+	font-family: var(--font-mono);
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+	stroke: var(--green-bright);
+}
+
+/* Animated edges */
+.react-flow__edge.animated path {
+	stroke: var(--green-mid);
+}
+
+/* Controls panel */
+.react-flow__controls {
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.react-flow__controls-button {
+	background: var(--purple-mid);
+	border-color: var(--green-dark);
+	color: var(--green-bright);
+	fill: var(--green-bright);
+}
+
+.react-flow__controls-button:hover {
+	background: var(--green-dark);
+}
+
+.react-flow__controls-button svg {
+	fill: var(--green-bright);
+}
+
+/* MiniMap */
+.react-flow__minimap {
+	background: var(--purple-mid);
+	border: 1px solid var(--green-dark);
+}
+
+/* Custom node styling */
+.basic-node {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	background: var(--purple-mid);
+	border: 1px solid var(--purple-light);
+	border-radius: 6px;
+	padding: 10px 12px;
+	color: var(--green-bright);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	min-width: 150px;
+}
+
+/* Spacing for elements inside custom nodes */
+.basic-node > * + * {
+	margin-top: 8px;
+}
+
+/* Labels inside custom nodes */
+.basic-node label {
+	display: block;
+	margin-bottom: 4px;
+	font-size: 11px;
+	color: var(--green-mid);
+}
+
+/* Inputs inside custom nodes */
+.basic-node input,
+.basic-node select,
+.basic-node textarea {
+	width: 100%;
+	box-sizing: border-box;
+	background: var(--purple-dark);
+	border: 1px solid var(--purple-light);
+	color: var(--green-bright);
+	border-radius: 4px;
+	padding: 6px 8px;
+	font-size: 12px;
+}
+
+.basic-node input:focus,
+.basic-node select:focus,
+.basic-node textarea:focus {
+	outline: none;
+}
+
+/* Buttons inside custom nodes */
+.basic-node button {
+	width: 100%;
+	padding: 6px 10px;
+	font-size: 11px;
 }

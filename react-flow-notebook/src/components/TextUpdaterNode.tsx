@@ -9,7 +9,7 @@ export function TextUpdaterNode(props) {
   }, [])
 
   return (
-    <div className="text-updater-node">
+    <div className="basic-node">
 
       <Handle type="source" position={Position.Top} id="a"/>
       <Handle type="target" position={Position.Bottom} id="b"/>
