@@ -17,8 +17,32 @@ import {
 
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
+import './additional.css'
 
+import NumberInputNode, { RandomNumber } from './NumberInput'
 
+function createNodes() {
+  const nodes = []
+
+  for (let i = 0; i < 10; i++) {
+    nodes.push({
+      id: `test-id-${i}`,  // test-id-1
+      data: {
+        test: `my id is ${i}`
+      },
+      position: {
+        x: 100 * i,
+        y: 100 * i
+      }
+    })
+  }
+
+  return nodes
+}
+
+const myNodes = createNodes()
+
+// console.log(myNodes)
 
 const initialNodes = [
   { 
@@ -49,6 +73,16 @@ const initialNodes = [
     data: {
       value: 123
     }
+  },
+  {
+    id: 'n4',
+    type: 'numberInputNode',
+    position: {
+      x: 200, y: 100
+    },
+    data: {
+      value: 123
+    }
   }
 ]
 
@@ -61,11 +95,13 @@ const initialEdges = [
     type: 'custom-edge',
 
     label: 'connects with',
+    animated: true
   }
 ]
 
 const nodeTypes = {
-  textUpdater: TextUpdaterNode
+  textUpdater: TextUpdaterNode,
+  numberInputNode: NumberInputNode
 }
 
 const edgeTypes = {
@@ -141,6 +177,8 @@ function CustomEdge(props) {
 }
 
 
+
+
 export default function App() {
   const [nodes, setNodes] = useState(initialNodes)
   const [edges, setEdges] = useState(initialEdges)
@@ -180,6 +218,7 @@ export default function App() {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <ReactFlow
+        colorMode="dark"
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         nodes={nodes}
