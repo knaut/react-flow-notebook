@@ -13,7 +13,7 @@ export function RandomNumber({id, data}) {
 }
 
 
-function NumberInput({ id, data }) {
+export function NumberInput({ id, data }) {
 	const [number, setNumber] = useState(0)
 
 	const onChange = useCallback((evt) => {

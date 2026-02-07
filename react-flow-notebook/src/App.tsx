@@ -7,27 +7,15 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
-  Position,
-  Handle,
-  BaseEdge,
-  getStraightPath,
-
-  EdgeLabelRenderer,
-  useReactFlow
-
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import './additional.css'
 
-import NumberInputNode, { RandomNumber } from './components/NumberInput'
+import NumberInputNode from './components/NumberInput'
 import { CustomEdge } from './components/CustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
 
-import { 
-  createNodes, 
-  getInitialNodes,
-  getInitialEdges
-} from './utils'
+import { getInitialNodes, getInitialEdges } from './utils'
 
 
 

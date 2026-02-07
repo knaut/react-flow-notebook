@@ -1,22 +1,5 @@
-
-import { useState, useCallback } from 'react'
-import {
-  ReactFlow,
-  Background,
-  Controls,
-  applyNodeChanges,
-  applyEdgeChanges,
-  addEdge,
-  Position,
-  Handle,
-  BaseEdge,
-  getStraightPath,
-
-  EdgeLabelRenderer,
-  useReactFlow
-
-} from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
+import { useCallback } from 'react'
+import { Handle, Position } from '@xyflow/react'
 
 export function TextUpdaterNode(props) {
   console.log("TextUpdaterNode", props)

@@ -1,25 +1,12 @@
-
-import { useState, useCallback } from 'react'
 import {
-  ReactFlow,
-  Background,
-  Controls,
-  applyNodeChanges,
-  applyEdgeChanges,
-  addEdge,
-  Position,
-  Handle,
   BaseEdge,
   getStraightPath,
-
   EdgeLabelRenderer,
-  useReactFlow
-
+  useReactFlow,
 } from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
 
 export function CustomEdge(props) {
-  const { id, sourceX, sourceY, targetX, targetY, label } = props
+  const { id, sourceX, sourceY, targetX, targetY } = props
 
   const { deleteElements } = useReactFlow()
 
