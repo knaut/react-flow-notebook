@@ -76,7 +76,7 @@ export default function App() {
       >
         <Background/>
         <Controls/>
-        <MiniMap/>
+        <MiniMap nodeColor="#50F2E840"/>
       </ReactFlow>
     </div>
   )

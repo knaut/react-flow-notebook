@@ -319,7 +319,7 @@ legend {
    React Flow Theming
    ===================== */
 .react-flow {
-	--xy-background-color: var(--purple-dark);
+	--xy-background-color: #15141a;
 
 	/* Nodes */
 	--xy-node-background-color: var(--purple-mid);
@@ -364,7 +364,7 @@ legend {
 
 /* Background dots */
 .react-flow__background pattern circle {
-	fill: var(--green-dark);
+	fill: #232229;
 }
 
 /* Node classes */
@@ -435,7 +435,10 @@ legend {
 /* MiniMap */
 .react-flow__minimap {
 	background: var(--purple-mid);
-	border: 1px solid var(--green-dark);
+	border: 1px solid var(--purple-light);
+	border-radius: 8px;
+	opacity: 0.75;
+	overflow: hidden;
 }
 
 /* Custom node styling */
