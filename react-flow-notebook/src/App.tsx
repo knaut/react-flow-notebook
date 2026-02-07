@@ -4,6 +4,7 @@ import {
   ReactFlow,
   Background,
   Controls,
+  MiniMap,
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
@@ -75,6 +76,7 @@ export default function App() {
       >
         <Background/>
         <Controls/>
+        <MiniMap/>
       </ReactFlow>
     </div>
   )
