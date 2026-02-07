@@ -13,6 +13,7 @@
 	--green-dark: #598C4A;
 	--green-mid: #73BF50;
 	--green-bright: #B1F250;
+	--cyan-bright: #50F2E8;
 	--font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
 }
 
@@ -52,7 +53,7 @@ select {
 	border: 1px solid var(--purple-light);
 	border-radius: 4px;
 	padding: 8px 12px;
-	color: var(--green-bright);
+	color: var(--cyan-bright);
 	transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -375,7 +376,7 @@ legend {
 }
 
 .react-flow__node.selected {
-	box-shadow: 0 0 0 2px var(--green-mid), 0 4px 12px rgba(0, 0, 0, 0.3);
+	/*box-shadow: 0 0 0 2px var(--green-mid), 0 4px 12px rgba(0, 0, 0, 0.3);*/
 }
 
 /* Handles */
@@ -471,7 +472,8 @@ legend {
 	box-sizing: border-box;
 	background: var(--purple-dark);
 	border: 1px solid var(--purple-light);
-	color: var(--green-bright);
+	color: var(--cyan-bright);
+	font-family: var(--font-mono);
 	border-radius: 4px;
 	padding: 6px 8px;
 	font-size: 12px;
