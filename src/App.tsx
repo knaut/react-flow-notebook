@@ -12,7 +12,7 @@ import {
 import '@xyflow/react/dist/style.css'
 import './additional.css'
 
-import NumberInputNode from './components/NumberInput'
+import { NumberInput, RandomNumber } from './components/NumberInput'
 import { CustomEdge } from './components/CustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
 
@@ -27,7 +27,7 @@ export default function App() {
   const onNodesChange = useCallback(
     changes => setNodes(
       nodesSnapshot => {
-        console.log('nodesSnapshot', nodesSnapshot)
+        // console.log('nodesSnapshot', nodesSnapshot)
         return applyNodeChanges(changes, nodesSnapshot)
       }
     ),
@@ -37,7 +37,7 @@ export default function App() {
   const onEdgesChange = useCallback(
     changes => setEdges(
       edgesSnapshot => {
-        console.log('edgesSnapshot', edgesSnapshot)
+        // console.log('edgesSnapshot', edgesSnapshot)
         return applyEdgeChanges(changes, edgesSnapshot)
       }
     ),
@@ -47,7 +47,7 @@ export default function App() {
   const onConnect = useCallback(
     params => setEdges(
       edgesSnapshot => {
-        console.log('edgesSnapshot', edgesSnapshot)
+        // console.log('edgesSnapshot', edgesSnapshot)
 
         // console.log('brrrrr')
         return addEdge(params, edgesSnapshot)
@@ -62,7 +62,8 @@ export default function App() {
         colorMode="dark"
         nodeTypes={{
           textUpdater: TextUpdaterNode,
-          numberInputNode: NumberInputNode
+          numberInputNode: NumberInput,
+          randomNumber: RandomNumber
         }}
         edgeTypes={{
           'custom-edge': CustomEdge

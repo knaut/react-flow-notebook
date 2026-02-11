@@ -17,6 +17,10 @@ export function createNodes() {
   return nodes
 }
 
+export function randomInteger() {
+  return Math.floor((Math.random() * 10) * (Math.random() * 10))
+}
+
 export function getInitialNodes() {
   return  [
     { 
@@ -56,6 +60,16 @@ export function getInitialNodes() {
       },
       data: {
         value: 123
+      }
+    },
+    {
+      id: 'n5',
+      type: 'randomNumber',
+      position: {
+        x: 0, y: 200
+      },
+      data: {
+        value: randomInteger()
       }
     }
   ]
