@@ -2,8 +2,6 @@ import { useCallback } from 'react'
 import { Handle, Position } from '@xyflow/react'
 
 export function TextUpdaterNode(props) {
-  console.log("TextUpdaterNode", props)
-
   const onChange = useCallback((evt) => {
     console.log(evt.target.value)
   }, [])
@@ -14,7 +12,7 @@ export function TextUpdaterNode(props) {
       <Handle type="source" position={Position.Top} id="a"/>
       <Handle type="target" position={Position.Bottom} id="b"/>
 
-      <Handle
+      {/*<Handle
         id="c"
         position={Position.Right}
         type="source"
@@ -26,7 +24,7 @@ export function TextUpdaterNode(props) {
         }}
       >
         
-      </Handle>
+      </Handle>*/}
       
       <div>
         <label htmlFor="text">Text:</label>

@@ -12,7 +12,8 @@ import {
 import '@xyflow/react/dist/style.css'
 import './additional.css'
 
-import { NumberInput, RandomNumber } from './components/NumberInput'
+import { NumberInput } from './components/NumberInput'
+import { RandomNumber } from './components/RandomNumber'
 import { CustomEdge } from './components/CustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
 
