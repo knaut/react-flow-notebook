@@ -1,9 +1,11 @@
 import { useCallback, useState } from 'react'
-import { Handle, Position } from '@xyflow/react'
+import { Handle, Position, useReactFlow } from '@xyflow/react'
 import { randomInteger } from '../utils'
 
 export function NumberInput({ id, data }) {
-	const [number, setNumber] = useState(0)
+	const [number, setNumber] = useState(data.value || 0)
+	const { updateNodeData } = useReactFlow()
+
 
 	const onChange = useCallback((evt) => {
 		const cappedNumber = Math.round(
@@ -11,7 +13,8 @@ export function NumberInput({ id, data }) {
 		)
 
 		setNumber(cappedNumber)
-	}, [])
+		updateNodeData(id, { value: cappedNumber })
+	}, [id, updateNodeData])
 
 	return (
 		<div className="basic-node">

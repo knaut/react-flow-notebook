@@ -16,6 +16,7 @@ import { NumberInput } from './components/NumberInput'
 import { RandomNumber } from './components/RandomNumber'
 import { CustomEdge } from './components/CustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
+import { DisplayNode } from './components/DisplayNode'
 
 import { getInitialNodes, getInitialEdges } from './utils'
 
@@ -64,7 +65,8 @@ export default function App() {
         nodeTypes={{
           textUpdater: TextUpdaterNode,
           numberInputNode: NumberInput,
-          randomNumber: RandomNumber
+          randomNumber: RandomNumber,
+          display: DisplayNode
         }}
         edgeTypes={{
           'custom-edge': CustomEdge

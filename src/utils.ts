@@ -71,6 +71,13 @@ export function getInitialNodes() {
       data: {
         value: randomInteger()
       }
+    },
+    {
+      id: 'n6',
+      type: 'display',
+      position: {
+        x: 200, y: 400
+      }
     }
   ]
 }
