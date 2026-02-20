@@ -1,9 +1,12 @@
-import { useCallback } from 'react'
-import { Handle, Position } from '@xyflow/react'
+import { useState, useCallback } from 'react'
+import { Handle, Position, useReactFlow } from '@xyflow/react'
 
-export function TextUpdaterNode(props) {
+export function TextUpdaterNode({id, data}) {
+  const { updateNodeData } = useReactFlow()
+  const [text, setText] = useState(data.value)
+
   const onChange = useCallback((evt) => {
-    console.log(evt.target.value)
+    setText(evt.target.value || data.value)
   }, [])
 
   return (
@@ -12,7 +15,7 @@ export function TextUpdaterNode(props) {
       
       <div>
         <label htmlFor="text">Text:</label>
-        <input id="text" name="text" onChange={onChange} className="nodrag"/>
+        <input value={data.value} id="text" name="text" onChange={onChange} className="nodrag"/>
       </div>
     </div>
   )
