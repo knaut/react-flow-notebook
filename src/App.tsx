@@ -53,7 +53,7 @@ export default function App() {
         // console.log('edgesSnapshot', edgesSnapshot)
 
         // console.log('brrrrr')
-        return addEdge(params, edgesSnapshot)
+        return addEdge({ ...params, type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE }, edgesSnapshot)
       }
     ),
     []
