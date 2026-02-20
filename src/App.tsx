@@ -52,6 +52,7 @@ export default function App() {
     <div style={{ width: '100vw', height: '100vh' }}>
       <ReactFlow
         colorMode="dark"
+        connectionLineType="smoothstep"
         nodeTypes={{
           [NODE_TYPES.TEXT_UPDATER]: TextUpdaterNode,
           [NODE_TYPES.NUMBER_INPUT]: NumberInput,

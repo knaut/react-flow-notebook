@@ -21,8 +21,6 @@ export function ExampleCustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
     targetPosition: Position.Left,
   })
 
-  // console.log(`translate(-50%, -50) translate(${labelX}px, ${labelY}px)`)
-
   return (
     <>
       <BaseEdge id={id} path={edgePath}/>
