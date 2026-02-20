@@ -14,11 +14,12 @@ import './additional.css'
 
 import { NumberInput } from './components/NumberInput'
 import { RandomNumber } from './components/RandomNumber'
-import { CustomEdge } from './components/CustomEdge'
+import { ExampleCustomEdge } from './components/ExampleCustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
 import { DisplayNode } from './components/DisplayNode'
 
 import { getInitialNodes, getInitialEdges } from './utils'
+import { NODE_TYPES, EDGE_TYPES } from './constants'
 
 
 
@@ -63,13 +64,13 @@ export default function App() {
       <ReactFlow
         colorMode="dark"
         nodeTypes={{
-          textUpdater: TextUpdaterNode,
-          numberInputNode: NumberInput,
-          randomNumber: RandomNumber,
-          display: DisplayNode
+          [NODE_TYPES.TEXT_UPDATER]: TextUpdaterNode,
+          [NODE_TYPES.NUMBER_INPUT]: NumberInput,
+          [NODE_TYPES.RANDOM_NUMBER]: RandomNumber,
+          [NODE_TYPES.DISPLAY]: DisplayNode
         }}
         edgeTypes={{
-          'custom-edge': CustomEdge
+          [EDGE_TYPES.EXAMPLE_CUSTOM_EDGE]: ExampleCustomEdge
         }}
         nodes={nodes}
         edges={edges}

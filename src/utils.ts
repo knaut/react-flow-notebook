@@ -1,4 +1,4 @@
-import { NODE_TYPES } from './constants'
+import { NODE_TYPES, EDGE_TYPES } from './constants'
 
 export function createNodes() {
   const nodes = []
@@ -25,25 +25,25 @@ export function randomInteger() {
 
 export function getInitialNodes() {
   return  [
-    { 
-      id: 'n1',
-      position: {
-        x: -50, y: -50
-      },
-      data: {
-        label: 'Node 1'
-      },
-      type: 'input'
-    },
-    {
-      id: 'n2',
-      position: {
-        x: 0, y: 100
-      },
-      data: {
-        label: 'Node 2'
-      }
-    },
+    // { 
+    //   id: 'n1',
+    //   position: {
+    //     x: -50, y: -50
+    //   },
+    //   data: {
+    //     label: 'Node 1'
+    //   },
+    //   type: 'input'
+    // },
+    // {
+    //   id: 'n2',
+    //   position: {
+    //     x: 0, y: 100
+    //   },
+    //   data: {
+    //     label: 'Node 2'
+    //   }
+    // },
     {
       id: 'n3',
       type: NODE_TYPES.TEXT_UPDATER,
@@ -91,7 +91,7 @@ export function getInitialEdges() {
       source: 'n1',
       target: 'n2',
       // type: 'step',
-      type: 'custom-edge',
+      type: EDGE_TYPES.CUSTOM_EDGE,
 
       label: 'connects with',
       animated: true

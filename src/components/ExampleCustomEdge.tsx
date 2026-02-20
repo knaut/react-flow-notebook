@@ -5,9 +5,7 @@ import {
   useReactFlow,
 } from '@xyflow/react'
 
-export function CustomEdge(props) {
-  const { id, sourceX, sourceY, targetX, targetY } = props
-
+export function ExampleCustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
   const { deleteElements } = useReactFlow()
 
   const [edgePath, labelX, labelY] = getStraightPath({
