@@ -1,3 +1,5 @@
+import { NODE_TYPES } from './constants'
+
 export function createNodes() {
   const nodes = []
 
@@ -44,7 +46,7 @@ export function getInitialNodes() {
     },
     {
       id: 'n3',
-      type: 'textUpdater',
+      type: NODE_TYPES.TEXT_UPDATER,
       position: {
         x: 100, y: 0
       },
@@ -54,7 +56,7 @@ export function getInitialNodes() {
     },
     {
       id: 'n4',
-      type: 'numberInputNode',
+      type: NODE_TYPES.NUMBER_INPUT,
       position: {
         x: 200, y: 100
       },
@@ -64,7 +66,7 @@ export function getInitialNodes() {
     },
     {
       id: 'n5',
-      type: 'randomNumber',
+      type: NODE_TYPES.RANDOM_NUMBER,
       position: {
         x: 0, y: 200
       },
@@ -74,7 +76,7 @@ export function getInitialNodes() {
     },
     {
       id: 'n6',
-      type: 'display',
+      type: NODE_TYPES.DISPLAY,
       position: {
         x: 200, y: 400
       }
