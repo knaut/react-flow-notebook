@@ -87,14 +87,16 @@ export function getInitialNodes() {
 export function getInitialEdges() {
   return [
     {
-      id: 'n1-n2',
-      source: 'n1',
-      target: 'n2',
-      // type: 'step',
+      id: 'n4-n6',
+      source: 'n4', // NumberInput
+      target: 'n6', // DisplayNode
       type: EDGE_TYPES.CUSTOM_EDGE,
-
-      label: 'connects with',
-      animated: true
+    },
+    {
+      id: 'n5-n6',
+      source: 'n5', // RandomNumber
+      target: 'n6', // DisplayNode
+      type: EDGE_TYPES.CUSTOM_EDGE,
     }
   ]  
 }
