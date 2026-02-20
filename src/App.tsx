@@ -16,7 +16,7 @@ import { NumberInput } from './components/NumberInput'
 import { RandomNumber } from './components/RandomNumber'
 import { ExampleCustomEdge } from './components/ExampleCustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
-import { DisplayNode } from './components/DisplayNode'
+import { CombineNode } from './components/CombineNode'
 
 import { getInitialNodes, getInitialEdges } from './utils'
 import { NODE_TYPES, EDGE_TYPES } from './constants'
@@ -29,32 +29,21 @@ export default function App() {
 
   const onNodesChange = useCallback(
     changes => setNodes(
-      nodesSnapshot => {
-        // console.log('nodesSnapshot', nodesSnapshot)
-        return applyNodeChanges(changes, nodesSnapshot)
-      }
+      nodesSnapshot => applyNodeChanges(changes, nodesSnapshot)
     ),
     [], 
   )
 
   const onEdgesChange = useCallback(
     changes => setEdges(
-      edgesSnapshot => {
-        // console.log('edgesSnapshot', edgesSnapshot)
-        return applyEdgeChanges(changes, edgesSnapshot)
-      }
+      edgesSnapshot => applyEdgeChanges(changes, edgesSnapshot)
     ),
     [],
   )
   
   const onConnect = useCallback(
     params => setEdges(
-      edgesSnapshot => {
-        // console.log('edgesSnapshot', edgesSnapshot)
-
-        // console.log('brrrrr')
-        return addEdge({ ...params, type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE }, edgesSnapshot)
-      }
+      edgesSnapshot => addEdge({ ...params, type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE }, edgesSnapshot)
     ),
     []
   )
@@ -67,7 +56,7 @@ export default function App() {
           [NODE_TYPES.TEXT_UPDATER]: TextUpdaterNode,
           [NODE_TYPES.NUMBER_INPUT]: NumberInput,
           [NODE_TYPES.RANDOM_NUMBER]: RandomNumber,
-          [NODE_TYPES.DISPLAY]: DisplayNode
+          [NODE_TYPES.COMBINE]: CombineNode
         }}
         edgeTypes={{
           [EDGE_TYPES.EXAMPLE_CUSTOM_EDGE]: ExampleCustomEdge

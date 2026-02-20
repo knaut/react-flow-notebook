@@ -57,7 +57,7 @@ export function getInitialNodes() {
     },
     {
       id: 'n6',
-      type: NODE_TYPES.DISPLAY,
+      type: NODE_TYPES.COMBINE,
       position: {
         x: 400, y: 150
       }
