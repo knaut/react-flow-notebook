@@ -29,7 +29,7 @@ export function getInitialNodes() {
       id: 'n3',
       type: NODE_TYPES.TEXT_UPDATER,
       position: {
-        x: 100, y: 0
+        x: 0, y: 0
       },
       data: {
         value: "Hello!"
@@ -39,7 +39,7 @@ export function getInitialNodes() {
       id: 'n4',
       type: NODE_TYPES.NUMBER_INPUT,
       position: {
-        x: 200, y: 100
+        x: 0, y: 150
       },
       data: {
         value: 123
@@ -49,7 +49,7 @@ export function getInitialNodes() {
       id: 'n5',
       type: NODE_TYPES.RANDOM_NUMBER,
       position: {
-        x: 0, y: 200
+        x: 0, y: 300
       },
       data: {
         value: randomInteger()
@@ -59,7 +59,7 @@ export function getInitialNodes() {
       id: 'n6',
       type: NODE_TYPES.DISPLAY,
       position: {
-        x: 200, y: 400
+        x: 400, y: 150
       }
     }
   ]
