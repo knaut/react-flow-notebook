@@ -3,11 +3,13 @@ import { Handle, Position, useReactFlow } from '@xyflow/react'
 
 export function TextUpdaterNode({id, data}) {
   const { updateNodeData } = useReactFlow()
-  const [text, setText] = useState(data.value)
+  const [text, setText] = useState(data.value || '')
 
   const onChange = useCallback((evt) => {
-    setText(evt.target.value || data.value)
-  }, [])
+    const newValue = evt.target.value
+    setText(newValue)
+    updateNodeData(id, { value: newValue })
+  }, [id, updateNodeData])
 
   return (
     <div className="basic-node">
@@ -15,7 +17,7 @@ export function TextUpdaterNode({id, data}) {
       
       <div>
         <label htmlFor="text">Text:</label>
-        <input value={data.value} id="text" name="text" onChange={onChange} className="nodrag"/>
+        <input value={text} id="text" name="text" onChange={onChange} className="nodrag"/>
       </div>
     </div>
   )
