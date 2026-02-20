@@ -10,6 +10,8 @@ export function DisplayNode({ id }) {
 
 	const sum = nodesData.reduce((acc, node) => acc + (node?.data?.value || 0), 0)
 
+	console.log({connections, nodesData, sum})
+
 	return (
 		<div className="basic-node">
 			<Handle type="target" position={Position.Left} />

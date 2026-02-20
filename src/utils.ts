@@ -49,9 +49,6 @@ export function getInitialNodes() {
       type: NODE_TYPES.TEXT_UPDATER,
       position: {
         x: 100, y: 0
-      },
-      data: {
-        value: 123
       }
     },
     {
