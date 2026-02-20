@@ -1,6 +1,6 @@
 import {
   BaseEdge,
-  getStraightPath,
+  getSimpleBezierPath,
   EdgeLabelRenderer,
   useReactFlow,
 } from '@xyflow/react'
@@ -8,7 +8,7 @@ import {
 export function ExampleCustomEdge({ id, sourceX, sourceY, targetX, targetY }) {
   const { deleteElements } = useReactFlow()
 
-  const [edgePath, labelX, labelY] = getStraightPath({
+  const [edgePath, labelX, labelY] = getSimpleBezierPath({
     sourceX,
     sourceY,
     targetX,

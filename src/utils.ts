@@ -71,19 +71,19 @@ export function getInitialEdges() {
       id: 'n3-n6',
       source: 'n3', // TextUpdaterNode
       target: 'n6', // DisplayNode
-      type: EDGE_TYPES.CUSTOM_EDGE,
+      type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE,
     },
     {
       id: 'n4-n6',
       source: 'n4', // NumberInput
       target: 'n6', // DisplayNode
-      type: EDGE_TYPES.CUSTOM_EDGE,
+      type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE,
     },
     {
       id: 'n5-n6',
       source: 'n5', // RandomNumber
       target: 'n6', // DisplayNode
-      type: EDGE_TYPES.CUSTOM_EDGE,
+      type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE,
     }
   ]  
 }
