@@ -7,13 +7,30 @@ export function CombineNode({ id }) {
 		connections.map(c => c.source)
 	)
 
-	const combine = nodesData.reduce((acc, node) => acc + (node?.data?.value || 0), 0)
+	const numbers: number[] = []
+	const strings: string[] = []
+
+	nodesData.forEach(node => {
+		const value = node?.data?.value
+		if (value !== undefined && value !== null) {
+			if (typeof value === 'number') {
+				numbers.push(value)
+			} else if (typeof value === 'string') {
+				strings.push(value)
+			}
+		}
+	})
+
+	const numberSum = numbers.reduce((acc, n) => acc + n, 0)
+	const stringConcat = strings.join('')
+
+	const combinedResult = `${stringConcat} ${numberSum}`
 
 	return (
 		<div className="basic-node">
 			<Handle type="target" position={Position.Left} />
 			<div>Combine:</div>
-			<div>{combine}</div>
+			<div>{combinedResult}</div>
 		</div>
 	)
 }
