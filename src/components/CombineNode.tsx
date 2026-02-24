@@ -24,13 +24,13 @@ export function CombineNode({ id }) {
 	const numberSum = numbers.reduce((acc, n) => acc + n, 0)
 	const stringConcat = strings.join('')
 
-	const combinedResult = `${stringConcat} ${numberSum}`
+	const combinedResult = `${stringConcat} ${numberSum !== 0 ? numberSum : ""}`
 
 	return (
 		<div className="basic-node">
 			<Handle type="target" position={Position.Left} />
-			<div>Combine:</div>
-			<div>{combinedResult}</div>
+			<label>Combiner:</label>
+			<div>{!combinedResult || !combinedResult.replace(/\s/g, '').length ? "None to show." : combinedResult}</div>
 		</div>
 	)
 }

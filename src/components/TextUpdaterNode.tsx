@@ -13,11 +13,17 @@ export function TextUpdaterNode({id, data}) {
 
   return (
     <div className="basic-node">
+      <label>Text:</label>
       <Handle type="source" position={Position.Right} />
       
-      <div>
-        <label htmlFor="text">Text:</label>
-        <input value={text} id="text" name="text" onChange={onChange} className="nodrag"/>
+      <div style={{
+        display: "flex",
+      }}>
+        
+        <div>
+          <input value={text} id="text" name="text" onChange={onChange} className="nodrag"/>
+        </div>
+
       </div>
     </div>
   )
