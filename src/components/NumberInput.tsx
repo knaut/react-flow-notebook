@@ -24,8 +24,11 @@ export function NumberInput({ id, data }) {
 		if (result !== false) {
 			setNumber(result)
 			updateNodeData(id, { value: result })
+		} else {
+			setNumber(0)
+			updateNodeData(id, { value: 0 })
 		}
-	}, [id, updateNodeData]);
+	}, [id, updateNodeData])
 
 	const onKeyDown = useCallback(event => {
 		if (event.key === "Backspace") {
