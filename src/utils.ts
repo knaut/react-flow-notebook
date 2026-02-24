@@ -42,7 +42,7 @@ export function getInitialNodes() {
         x: 0, y: 150
       },
       data: {
-        value: 123
+        value: 223
       }
     },
     {
