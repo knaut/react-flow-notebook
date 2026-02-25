@@ -29,7 +29,7 @@ export function CombineNode({ id }) {
 	return (
 		<div className="basic-node">
 			<Handle type="target" position={Position.Left} />
-			<label>Combiner:</label>
+			<label>Combiner</label>
 			<div>{!combinedResult || !combinedResult.replace(/\s/g, '').length ? "None to show." : combinedResult}</div>
 		</div>
 	)

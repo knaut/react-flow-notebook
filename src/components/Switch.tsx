@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Handle, Position, useReactFlow, useNodeConnections } from '@xyflow/react'
 import { css } from '@emotion/react'
 
@@ -10,13 +10,17 @@ export function Switch({id, data}) {
 	const [toggle, setToggle] = useState()
 	const { updateNodeData } = useReactFlow()
 
-	const targetConnections = useNodeConnections({ type: 'target' })
-	const sourceConnections = useNodeConnections({ type: 'source' })
-
-	console.log(targetConnections, sourceConnections, toggle);
+	const targetConnections = useNodeConnections()
+	// const sourceConnections = useNodeConnections({ type: 'source' })
 
 	const handleToggle = useCallback(event => {
 		setToggle(!toggle)
+	}, [id, toggle, setToggle])
+
+	useEffect(() => {
+		
+		console.log(toggle, targetConnections);
+
 	}, [id, toggle, setToggle])
 
 	return (

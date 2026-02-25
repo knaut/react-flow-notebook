@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Handle, Position, useReactFlow } from '@xyflow/react'
+import { css } from '@emotion/react'
 
 export function TextUpdaterNode({id, data}) {
   const [text, setText] = useState(data.value || '')
@@ -16,9 +17,7 @@ export function TextUpdaterNode({id, data}) {
       <label>Text:</label>
       <Handle type="source" position={Position.Right} />
       
-      <div style={{
-        display: "flex",  // use emotion
-      }}>
+      <div css={css`display: flex`}>
         
         <div>
           <input value={text} id="text" name="text" onChange={onChange} className="nodrag"/>
