@@ -61,6 +61,13 @@ export function getInitialNodes() {
       position: {
         x: 400, y: 150
       }
+    },
+    {
+      id: 'n7',
+      type: NODE_TYPES.SWITCH,
+      position: {
+        x: 400, y: -150
+      }
     }
   ]
 }

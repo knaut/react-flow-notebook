@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react'
 import { Handle, Position, useReactFlow } from '@xyflow/react'
 
 export function TextUpdaterNode({id, data}) {
-  const { updateNodeData } = useReactFlow()
   const [text, setText] = useState(data.value || '')
+  const { updateNodeData } = useReactFlow()
 
   const onChange = useCallback((evt) => {
     const newValue = evt.target.value
@@ -17,7 +17,7 @@ export function TextUpdaterNode({id, data}) {
       <Handle type="source" position={Position.Right} />
       
       <div style={{
-        display: "flex",
+        display: "flex",  // use emotion
       }}>
         
         <div>

@@ -17,6 +17,7 @@ import { RandomNumber } from './components/RandomNumber'
 import { ExampleCustomEdge } from './components/ExampleCustomEdge'
 import { TextUpdaterNode } from './components/TextUpdaterNode'
 import { CombineNode } from './components/CombineNode'
+import { Switch } from './components/Switch'
 
 import { getInitialNodes, getInitialEdges } from './utils'
 import { NODE_TYPES, EDGE_TYPES } from './constants'
@@ -57,7 +58,8 @@ export default function App() {
           [NODE_TYPES.TEXT_UPDATER]: TextUpdaterNode,
           [NODE_TYPES.NUMBER_INPUT]: NumberInput,
           [NODE_TYPES.RANDOM_NUMBER]: RandomNumber,
-          [NODE_TYPES.COMBINE]: CombineNode
+          [NODE_TYPES.COMBINE]: CombineNode,
+          [NODE_TYPES.SWITCH]: Switch
         }}
         edgeTypes={{
           [EDGE_TYPES.EXAMPLE_CUSTOM_EDGE]: ExampleCustomEdge
