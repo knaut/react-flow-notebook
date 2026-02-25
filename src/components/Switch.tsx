@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { Handle, Position, useReactFlow } from '@xyflow/react'
+import { Handle, Position, useReactFlow, useNodeConnections } from '@xyflow/react'
 import { css } from '@emotion/react'
 
 const ledW = 20;
@@ -7,8 +7,17 @@ const ledH = 12;
 
 // a node that passes through values when a button is toggled
 export function Switch({id, data}) {
-	const [toggle, toggleState] = useState()
+	const [toggle, setToggle] = useState()
 	const { updateNodeData } = useReactFlow()
+
+	const targetConnections = useNodeConnections({ type: 'target' })
+	const sourceConnections = useNodeConnections({ type: 'source' })
+
+	console.log(targetConnections, sourceConnections, toggle);
+
+	const handleToggle = useCallback(event => {
+		setToggle(!toggle)
+	}, [id, toggle, setToggle])
 
 	return (
 		<div className="basic-node">
@@ -20,7 +29,7 @@ export function Switch({id, data}) {
 				<div css={css`
 					width: 50%;
 				`}>
-					<button>{toggle ? 'on' : 'off'}</button>
+					<button onClick={handleToggle}>{toggle ? 'on' : 'off'}</button>
 				</div>
 				<div css={css`
 					width: 50%;
@@ -38,7 +47,8 @@ export function Switch({id, data}) {
 							left: calc(50% - ${ledW}px);
 							height: ${ledH}px;
 							width: ${ledW}px;
-							background: var(--green-dark);
+							background: ${toggle ? "var(--cyan-bright)" : "var(--green-dark)"};
+							box-shadow: ${toggle ? "0 0 10px var(--cyan-bright)" : "0 0 0 #000"};
 							box-sizing: border-box;
 							border: 2px solid rgba(0,0,0,0.3);
 							border-radius: 30px;

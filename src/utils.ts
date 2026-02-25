@@ -20,7 +20,7 @@ export function createNodes() {
 }
 
 export function randomInteger() {
-  return Math.floor((Math.random() * 10) * (Math.random() * 10))
+  return Math.floor((Math.random() * 10) * (Math.random() * 100))
 }
 
 export function getInitialNodes() {

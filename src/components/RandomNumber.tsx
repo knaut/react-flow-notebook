@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { css } from '@emotion/react'
-import { Handle, Position, useReactFlow, useNodeConnections } from '@xyflow/react'
+import { Handle, Position, useReactFlow } from '@xyflow/react'
 import { randomInteger } from '../utils'
 
 export function RandomNumber({id, data}) {
@@ -16,7 +16,7 @@ export function RandomNumber({id, data}) {
 
 	return (
 		<div className="basic-node">
-			<label>Random Integer</label>
+			<label>Random Number</label>
 			<div css={css`
 				display: flex
 			`}>
