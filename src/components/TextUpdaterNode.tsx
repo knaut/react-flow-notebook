@@ -14,7 +14,7 @@ export function TextUpdaterNode({id, data}) {
 
   return (
     <div className="basic-node">
-      <label>Text:</label>
+      <label>Text</label>
       <Handle type="source" position={Position.Right} />
       
       <div css={css`display: flex`}>

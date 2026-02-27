@@ -1,5 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Handle, Position, useReactFlow, useNodeConnections } from '@xyflow/react'
+import { 
+	Handle,
+	Position,
+	useReactFlow,
+	useNodeConnections,
+	useNodesData
+} from '@xyflow/react'
 import { css } from '@emotion/react'
 
 const ledW = 20;
@@ -10,18 +16,26 @@ export function Switch({id, data}) {
 	const [toggle, setToggle] = useState()
 	const { updateNodeData } = useReactFlow()
 
-	const targetConnections = useNodeConnections()
+	const connections = useNodeConnections({type: 'target'})
 	// const sourceConnections = useNodeConnections({ type: 'source' })
+	const nodesData = useNodesData(connections.map(c => c.source))
+	console.log(nodesData)
 
 	const handleToggle = useCallback(event => {
-		setToggle(!toggle)
+		if (toggle) {
+			setToggle(false)
+			updateNodeData(id, { value: false })
+		} else {
+			setToggle(true)
+			nodesData.forEach(node => {
+				if (node?.id !== id) {
+					const value = node?.data?.value
+					updateNodeData(id, { value })
+				}
+			})
+		}
 	}, [id, toggle, setToggle])
 
-	useEffect(() => {
-		
-		console.log(toggle, targetConnections);
-
-	}, [id, toggle, setToggle])
 
 	return (
 		<div className="basic-node">

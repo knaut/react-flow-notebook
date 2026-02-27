@@ -1,4 +1,4 @@
-import { NODE_TYPES, EDGE_TYPES } from './constants'
+import { NODE_TYPES, EDGE_TYPES, SEP } from './constants'
 
 export function randomInteger() {
 	return Math.floor((Math.random() * 10) * (Math.random() * 100))
@@ -7,7 +7,7 @@ export function randomInteger() {
 export function getInitialNodes() {
 	return  [
 		{
-			id: `${NODE_TYPES.TEXT_UPDATER}-1`,
+			id: `${NODE_TYPES.TEXT_UPDATER}${SEP}1`,
 			type: NODE_TYPES.TEXT_UPDATER,
 			position: {
 				x: 0, y: 0
@@ -17,7 +17,7 @@ export function getInitialNodes() {
 			}
 		},
 		{
-			id: `${NODE_TYPES.NUMBER_INPUT}-1`,
+			id: `${NODE_TYPES.NUMBER_INPUT}${SEP}1`,
 			type: NODE_TYPES.NUMBER_INPUT,
 			position: {
 				x: 0, y: 150
@@ -27,7 +27,7 @@ export function getInitialNodes() {
 			}
 		},
 		{
-			id: `${NODE_TYPES.RANDOM_NUMBER}-1`,
+			id: `${NODE_TYPES.RANDOM_NUMBER}${SEP}1`,
 			type: NODE_TYPES.RANDOM_NUMBER,
 			position: {
 				x: 0, y: 300
@@ -37,14 +37,15 @@ export function getInitialNodes() {
 			}
 		},
 		{
-			id: `${NODE_TYPES.COMBINE}-1`,
+			id: `${NODE_TYPES.COMBINE}${SEP}1`,
 			type: NODE_TYPES.COMBINE,
 			position: {
 				x: 400, y: 150
-			}
+			},
+			data: null
 		},
 		{
-			id: `${NODE_TYPES.SWITCH}-1`,
+			id: `${NODE_TYPES.SWITCH}${SEP}1`,
 			type: NODE_TYPES.SWITCH,
 			position: {
 				x: 400, y: -150
@@ -65,12 +66,12 @@ function makeEdge(id1, id2, type) {
 export function getInitialEdges() {
 	return [
 		makeEdge(
-			`${NODE_TYPES.NUMBER_INPUT}-1`,
-			`${NODE_TYPES.SWITCH}-1`,
+			`${NODE_TYPES.NUMBER_INPUT}${SEP}1`,
+			`${NODE_TYPES.SWITCH}${SEP}1`,
 		),
 		makeEdge(
-			`${NODE_TYPES.SWITCH}-1`,
-			`${NODE_TYPES.COMBINE}-1`,
+			`${NODE_TYPES.SWITCH}${SEP}1`,
+			`${NODE_TYPES.COMBINE}${SEP}1`,
 		)
 	]  
 }

@@ -41,7 +41,7 @@ export function NumberInput({ id, data }) {
 
 	return (
 		<div className="basic-node">
-			<label>Number Input:</label>
+			<label>Number Input</label>
 			<input
 				id={`number-${id}`}
 				type="text"
