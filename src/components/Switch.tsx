@@ -16,10 +16,14 @@ export function Switch({id, data}) {
 	const [toggle, setToggle] = useState()
 	const { updateNodeData } = useReactFlow()
 
-	const connections = useNodeConnections({type: 'target'})
-	// const sourceConnections = useNodeConnections({ type: 'source' })
+	const connections = useNodeConnections({
+		handleType: 'target',
+	})
+
 	const nodesData = useNodesData(connections.map(c => c.source))
-	console.log(nodesData)
+	
+	console.log({connections, nodesData})
+
 
 	const handleToggle = useCallback(event => {
 		if (toggle) {
@@ -30,12 +34,19 @@ export function Switch({id, data}) {
 			nodesData.forEach(node => {
 				if (node?.id !== id) {
 					const value = node?.data?.value
-					updateNodeData(id, { value })
+					updateNodeData(id, { toggle, value })
 				}
 			})
 		}
 	}, [id, toggle, setToggle])
 
+	// useEffect(() => {
+	// 	console.log('useEffect', sources)
+	// 	if (sources.length === 0) {
+	// 		setToggle(false)
+	// 		updateNodeData(id, { value: false })
+	// 	}
+	// }, [sources.length])
 
 	return (
 		<div className="basic-node">

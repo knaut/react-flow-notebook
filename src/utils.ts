@@ -49,7 +49,8 @@ export function getInitialNodes() {
 			type: NODE_TYPES.SWITCH,
 			position: {
 				x: 400, y: -150
-			}
+			},
+			data: null
 		}
 	]
 }
