@@ -39,12 +39,14 @@ function SwitchBlock({ data }) {
 			flex-direction: row;
 		`}>
 			<div css={css`
-				width: 50%;
+				width: 33%;
+				display: flex;
+				align-items: center;
 			`}>
 				<button onClick={handleToggle}>{toggle ? 'on' : 'off'}</button>
 			</div>
 			<div css={css`
-				width: 50%;
+				width: 23%;
 				justify-content: center;
 				align-content: center;
 			`}>
@@ -56,7 +58,7 @@ function SwitchBlock({ data }) {
 						display: block;
 						position: absolute;
 						top: calc(50% - ${ledH / 2}px);
-						left: calc(50% - ${ledW}px);
+						left: 8px;
 						height: ${ledH}px;
 						width: ${ledW}px;
 						background: ${toggle ? "var(--cyan-bright)" : "var(--green-dark)"};
@@ -66,6 +68,25 @@ function SwitchBlock({ data }) {
 						border-radius: 30px;
 					}						}
 				`}/>
+			</div>
+			<div css={css`
+				width: 44%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				display: flex;
+				align-items: center;
+
+			`}>
+				<div css={css`
+					background: var(--purple-dark);
+					padding: 6px 9px;
+					border-radius: 8px;
+					font-size: 11px;
+					color: var(--cyan-bright);
+					width: 100%;
+				`}>
+					{data.value}
+				</div>
 			</div>
 		</div>
 	)
@@ -116,7 +137,12 @@ export function Switch({id, data}) {
 	// }, [sources.length])
 
 	return (
-		<div className="basic-node">
+		<div 
+			className="basic-node"
+			css={css`
+				width: 200px;
+			`}
+		>
 			<label>Switch</label>
 			<Handle type="target" position={Position.Left} />
 			<div css={css`
