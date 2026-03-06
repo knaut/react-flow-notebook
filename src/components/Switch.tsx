@@ -31,8 +31,6 @@ function SwitchBlock({ data }) {
 		setToggle(!toggle)
 	})
 
-	console.log({data})
-
 	return (
 		<div css={css`
 			display: flex;
@@ -94,7 +92,6 @@ function SwitchBlock({ data }) {
 
 function mergeObjects(arr1, arr2, key) {
 	const all = arr1.concat(arr2)
-	console.log(all)
 
 	const obj = {}
 
@@ -112,9 +109,32 @@ function mergeObjects(arr1, arr2, key) {
 	}
 
 	return Object.keys(obj).map(key => obj[key])
-
-	// return uniqueMap.values()
 }
+
+
+function mergeNodeValues(nodesData, blocks) {
+	const newNodesData = nodesData.map(node => ({
+		id: node.id,
+		active: false,
+		value: node.data.value
+	}))
+
+	const merged = mergeObjects(newNodesData, blocks, 'id')		
+
+	// collate the toggled values to be passed onto combiner
+	const collatedValues = []
+	// const collatedToggles = []
+	for (let i = 0; i < merged.length; i++) {
+		if (merged[i].active) {
+			collatedValues.push(merged[i].value)
+		}
+		// collatedToggles.push(merged[i].toggle)
+	}
+
+	return collatedValues
+
+}
+
 
 // a node that passes through values when a button is toggled
 export function Switch({id, data}) {
@@ -125,56 +145,16 @@ export function Switch({id, data}) {
 	const nodesData = useNodesData(connections.map(c => c.source))
 	
 	const [blocks, setBlocks] = useState<SwitchableState[]>([])
+	const [toggles, setToggles] = useState([])
 
-	console.log({connections, nodesData, blocks})
 
 	useEffect(() => {
 		
-		const newNodesData = nodesData.map(node => ({
-			id: node.id,
-			active: false,
-			value: node.data.value
-		}))
-
-		console.log(newNodesData)
-
-		const merged = mergeObjects(newNodesData, blocks, 'id')
-		console.log({merged})
-
-		updateNodeData(id, { value: merged })
+		
+		const collatedValues = mergeNodeValues(nodesData, blocks)
+		updateNodeData(id, { value: collatedValues })
 			
 	}, [connections.length])
-
-
-	// const handleToggle = useCallback(event => {
-	// 	if (toggle) {
-	// 		setToggle(false)
-	// 		// updateNodeData(id, { value: false })
-	// 	} else {
-	// 		setToggle(true)
-	// 		// nodesData.forEach(node => {
-	// 		// 	if (node?.id !== id) {
-	// 		// 		const value = node?.data?.value
-	// 		// 		updateNodeData(id, { toggle, value })
-	// 		// 	}
-	// 		// })
-	// 	}
-	// }, [id, toggle, setToggle])
-
-	// useEffect(() => {
-	// 	console.log('useEffect toggle changed')
-	// 	if (toggle) {
-			
-	// 	}
-	// }, [toggle])
-
-	// useEffect(() => {
-	// 	console.log('useEffect', sources)
-	// 	if (sources.length === 0) {
-	// 		setToggle(false)
-	// 		updateNodeData(id, { value: false })
-	// 	}
-	// }, [sources.length])
 
 	return (
 		<div 
