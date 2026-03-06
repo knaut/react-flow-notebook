@@ -12,7 +12,7 @@ const ledW = 20;
 const ledH = 12;
 
 interface SwitchableState {
-	toggle: boolean
+	active: boolean
 	value: any
 }
 
@@ -92,18 +92,58 @@ function SwitchBlock({ data }) {
 	)
 }
 
+function mergeObjects(arr1, arr2, key) {
+	const all = arr1.concat(arr2)
+	console.log(all)
+
+	const obj = {}
+
+	for (let i = 0; i < all.length; i++) {
+		const { id } = all[i]
+
+		if (!obj[ id ]) {
+			obj[ id ] = all[i]
+		} else {
+			obj[ id ] = {
+				...all[i],
+				active: all[id].active ? true : false
+			}
+		}
+	}
+
+	return Object.keys(obj).map(key => obj[key])
+
+	// return uniqueMap.values()
+}
+
 // a node that passes through values when a button is toggled
 export function Switch({id, data}) {
-	const [toggle, setToggle] = useState<SwitchableState[]>([])
 	const { updateNodeData } = useReactFlow()
-
 	const connections = useNodeConnections({
 		handleType: 'target',
 	})
-
 	const nodesData = useNodesData(connections.map(c => c.source))
 	
-	console.log({connections, nodesData})
+	const [blocks, setBlocks] = useState<SwitchableState[]>([])
+
+	console.log({connections, nodesData, blocks})
+
+	useEffect(() => {
+		
+		const newNodesData = nodesData.map(node => ({
+			id: node.id,
+			active: false,
+			value: node.data.value
+		}))
+
+		console.log(newNodesData)
+
+		const merged = mergeObjects(newNodesData, blocks, 'id')
+		console.log({merged})
+
+		updateNodeData(id, { value: merged })
+			
+	}, [connections.length])
 
 
 	// const handleToggle = useCallback(event => {
