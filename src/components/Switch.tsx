@@ -164,7 +164,7 @@ export function Switch({id, data}) {
 	})
 	const nodesData = useNodesData(connections.map(c => c.source))
 	const [internal, setInternal] = useState<SwitchInternal>({});
-	console.log('Switch', internal)
+	console.log('Switch', internal, nodesData)
 
 	/* switch blocks state modelled like this:
 	[ true, false, false ]
@@ -195,6 +195,7 @@ export function Switch({id, data}) {
 		setInternal(merged.internal)
 		// then update the node state
 		// updateNodeData...
+		updateNodeData(id, { value: merged.nodeData })
 
 	}, [])
 
@@ -207,12 +208,15 @@ export function Switch({id, data}) {
 		setInternal(merged.internal)
 		// then update the node state
 		// updateNodeData...
+		updateNodeData(id, { value: merged.nodeData })
 
-	}, [connections.length])
+	}, [nodesData])
 
 	const handleToggleSwitchBlock = useCallback((internalUpdate) => {
 		const merged = mergeSwitchInternalWithNodesData(internal, nodesData, internalUpdate)
-		console.log({merged})
+		console.log(merged)
+		setInternal(merged.internal)
+		updateNodeData(id, { value: merged.nodeData })
 	})
 
 	return (
