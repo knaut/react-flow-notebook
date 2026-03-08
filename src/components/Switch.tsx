@@ -11,7 +11,6 @@ import { css } from '@emotion/react'
 const ledW = 20;
 const ledH = 12;
 
-
 interface SwitchInternal {
 	[key: string]: SwitchableBlock
 }
@@ -41,7 +40,6 @@ function SwitchBlock({ id, data, handleToggleSwitchBlock }) {
 			[id]: newToggle
 		}
 
-		// console.log({toggle, newToggle, internalUpdate})
 		handleToggleSwitchBlock(internalUpdate)
 	})
 
@@ -105,13 +103,11 @@ function SwitchBlock({ id, data, handleToggleSwitchBlock }) {
 }
 
 
-
+// TODO: add unit tests for pure function
 function mergeSwitchInternalWithNodesData(internal: SwitchInternal, nodesData: array, internalUpdate: SwitchInternalUpdate) {
 	const internalKeys = Object.keys(internal)	// used later
 	const newInternal = {...internal}
 	const nodeData: array = []
-
-	// console.log(newInternal)
 
 	for (let i = 0; i < nodesData.length; i++) {
 		const node = nodesData[i]
@@ -164,60 +160,33 @@ export function Switch({id, data}) {
 	})
 	const nodesData = useNodesData(connections.map(c => c.source))
 	const [internal, setInternal] = useState<SwitchInternal>({});
-	console.log('Switch', internal, nodesData)
 
-	/* switch blocks state modelled like this:
-	[ true, false, false ]
-	is the switches
+	const handleToggleSwitchBlock = useCallback((internalUpdate) => {
+		const merged = mergeSwitchInternalWithNodesData(internal, nodesData, internalUpdate)
+		setInternal(merged.internal)
+		updateNodeData(id, { value: merged.nodeData })
+	})
 
-	the input node data, i.e 
-	[ 223, 45, 'hello!' ] etc
-
-	so perhaps its "private"/local state is: {
-		"number-1": {
-			active: true,
-			value: 223
-		},
-		"number-2": {
-			active: false,
-			value 45
-		}
-	}
-
-	otherwise we can implicitly track things through index and splice…
-	*/
-
-	useEffect(() => {
-		// for first load...
+	const update = useCallback(() => {
 		const merged = mergeSwitchInternalWithNodesData(internal, nodesData)
-		
 		// set our internal state (i.e. toggles)
 		setInternal(merged.internal)
 		// then update the node state
-		// updateNodeData...
 		updateNodeData(id, { value: merged.nodeData })
+	})
 
+	useEffect(() => {
+		// update on first load to determine initial state
+		// based on starting connections (if any)
+		update()
 	}, [])
 
 
 	useEffect(() => {
-
-		const merged = mergeSwitchInternalWithNodesData(internal, nodesData)
-		
-		// set our internal state (i.e. toggles)
-		setInternal(merged.internal)
-		// then update the node state
-		// updateNodeData...
-		updateNodeData(id, { value: merged.nodeData })
-
+		// whenever source nodes change their data, update our internals
+		// and exposed node state
+		update()
 	}, [nodesData])
-
-	const handleToggleSwitchBlock = useCallback((internalUpdate) => {
-		const merged = mergeSwitchInternalWithNodesData(internal, nodesData, internalUpdate)
-		console.log(merged)
-		setInternal(merged.internal)
-		updateNodeData(id, { value: merged.nodeData })
-	})
 
 	return (
 		<div 
