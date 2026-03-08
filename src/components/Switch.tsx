@@ -11,24 +11,38 @@ import { css } from '@emotion/react'
 const ledW = 20;
 const ledH = 12;
 
-interface SwitchableState {
+
+interface SwitchInternal {
+	[key: string]: SwitchableBlock
+}
+
+interface SwitchableBlock {
 	active: boolean
 	value: any
 }
 
-function collateSwitchableData(nodesData) {
-	const arr: SwitchableState[] = []
-
-	for (let i = 0; i < nodesData.length; i++ ) {
-		
-	}
+interface SwitchInternal {
+	[key: string]: SwitchableBlock
 }
 
-function SwitchBlock({ data }) {
-	const [toggle, setToggle] = useState<SwitchableState>()
+interface SwitchInternalUpdate {
+	// e.g. { "number-1": false }
+	[key: string]: boolean
+}
+
+function SwitchBlock({ id, data, handleToggleSwitchBlock }) {
+	const [toggle, setToggle] = useState<boolean>(false)
 
 	const handleToggle = useCallback(() => {
-		setToggle(!toggle)
+		const newToggle = !toggle
+		setToggle(newToggle)
+
+		const internalUpdate: SwitchInternalUpdate = {
+			[id]: newToggle
+		}
+
+		// console.log({toggle, newToggle, internalUpdate})
+		handleToggleSwitchBlock(internalUpdate)
 	})
 
 	return (
@@ -90,49 +104,55 @@ function SwitchBlock({ data }) {
 	)
 }
 
-function mergeObjects(arr1, arr2, key) {
-	const all = arr1.concat(arr2)
 
-	const obj = {}
 
-	for (let i = 0; i < all.length; i++) {
-		const { id } = all[i]
+function mergeSwitchInternalWithNodesData(internal: SwitchInternal, nodesData: array, internalUpdate: SwitchInternalUpdate) {
+	const internalKeys = Object.keys(internal)	// used later
+	const newInternal = {...internal}
+	const nodeData: array = []
 
-		if (!obj[ id ]) {
-			obj[ id ] = all[i]
-		} else {
-			obj[ id ] = {
-				...all[i],
-				active: all[id].active ? true : false
+	// console.log(newInternal)
+
+	for (let i = 0; i < nodesData.length; i++) {
+		const node = nodesData[i]
+
+		// what if our internal state has a key not in nodesData?
+		// we are removing a node connection
+		if (!internalKeys.includes(node.id)) {
+			delete newInternal[node.id]
+		}
+
+		// what if we are adding a newly connected node to our internal state?
+		if (!internal[node.id]) {
+			newInternal[node.id] = {
+				active: false,
+				value: node.data.value
 			}
 		}
-	}
 
-	return Object.keys(obj).map(key => obj[key])
-}
+		// what if the new internal already has this node data?
+		if (newInternal[node.id]) {
+			// are we updating it?
+			if (internalUpdate) {
+				const updateKey = Object.keys(internalUpdate)[0]
+				// make sure this key matches this node id
+				if (updateKey === node.id) {
+					newInternal[updateKey].active = internalUpdate[updateKey]
+				}
+			}
 
-
-function mergeNodeValues(nodesData, blocks) {
-	const newNodesData = nodesData.map(node => ({
-		id: node.id,
-		active: false,
-		value: node.data.value
-	}))
-
-	const merged = mergeObjects(newNodesData, blocks, 'id')		
-
-	// collate the toggled values to be passed onto combiner
-	const collatedValues = []
-	// const collatedToggles = []
-	for (let i = 0; i < merged.length; i++) {
-		if (merged[i].active) {
-			collatedValues.push(merged[i].value)
+			// if active, add it to our publicly exposed node data
+			if (newInternal[node.id].active) {
+				nodeData.push(node.data.value)
+			}			
 		}
-		// collatedToggles.push(merged[i].toggle)
+
 	}
 
-	return collatedValues
-
+	return {
+		internal: newInternal,
+		nodeData
+	}
 }
 
 
@@ -143,18 +163,57 @@ export function Switch({id, data}) {
 		handleType: 'target',
 	})
 	const nodesData = useNodesData(connections.map(c => c.source))
-	
-	const [blocks, setBlocks] = useState<SwitchableState[]>([])
-	const [toggles, setToggles] = useState([])
+	const [internal, setInternal] = useState<SwitchInternal>({});
+	console.log('Switch', internal)
+
+	/* switch blocks state modelled like this:
+	[ true, false, false ]
+	is the switches
+
+	the input node data, i.e 
+	[ 223, 45, 'hello!' ] etc
+
+	so perhaps its "private"/local state is: {
+		"number-1": {
+			active: true,
+			value: 223
+		},
+		"number-2": {
+			active: false,
+			value 45
+		}
+	}
+
+	otherwise we can implicitly track things through index and splice…
+	*/
+
+	useEffect(() => {
+		// for first load...
+		const merged = mergeSwitchInternalWithNodesData(internal, nodesData)
+		
+		// set our internal state (i.e. toggles)
+		setInternal(merged.internal)
+		// then update the node state
+		// updateNodeData...
+
+	}, [])
 
 
 	useEffect(() => {
+
+		const merged = mergeSwitchInternalWithNodesData(internal, nodesData)
 		
-		
-		const collatedValues = mergeNodeValues(nodesData, blocks)
-		updateNodeData(id, { value: collatedValues })
-			
+		// set our internal state (i.e. toggles)
+		setInternal(merged.internal)
+		// then update the node state
+		// updateNodeData...
+
 	}, [connections.length])
+
+	const handleToggleSwitchBlock = useCallback((internalUpdate) => {
+		const merged = mergeSwitchInternalWithNodesData(internal, nodesData, internalUpdate)
+		console.log({merged})
+	})
 
 	return (
 		<div 
@@ -170,7 +229,14 @@ export function Switch({id, data}) {
 				flex-direction: column;
 				gap: 8px;
 			`}>
-				{nodesData.map((n, i) => <SwitchBlock id={n.id} data={n.data} key={i}/>)}
+				{nodesData.map((n, i) => (
+					<SwitchBlock
+						id={n.id}
+						data={n.data}
+						key={i}
+						handleToggleSwitchBlock={handleToggleSwitchBlock}
+					/>
+				))}
 			</div>
 			<Handle type="source" position={Position.Right} />
 		</div>
