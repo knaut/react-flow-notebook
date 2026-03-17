@@ -7,6 +7,16 @@ export function randomInteger() {
 export function getInitialNodes() {
 	return  [
 		{
+			id: `${NODE_TYPES.THEME}${SEP}1`,
+			type: NODE_TYPES.THEME,
+			position: {
+				x: 750, y: 300
+			},
+			data: {
+				value: false
+			}
+		},
+		{
 			id: `${NODE_TYPES.TEXT_UPDATER}${SEP}1`,
 			type: NODE_TYPES.TEXT_UPDATER,
 			position: {

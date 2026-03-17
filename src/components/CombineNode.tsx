@@ -10,10 +10,6 @@ export function CombineNode({ id }) {
 	const numbers: number[] = []
 	const strings: string[] = []
 
-	console.log('CombineNode', {nodesData})
-
-	// console.log(numbers, strings, nodesData)
-
 	nodesData.forEach(node => {
 		const value = node?.data?.value
 		if (value !== undefined && value !== null) {

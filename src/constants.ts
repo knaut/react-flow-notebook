@@ -3,7 +3,8 @@ export const NODE_TYPES = {
   NUMBER_INPUT: 'numberInputNode',
   RANDOM_NUMBER: 'randomNumber',
   COMBINE: 'combine',
-  SWITCH: 'switch'
+  SWITCH: 'switch',
+  THEME: 'theme'
 } as const
 
 export const EDGE_TYPES = {
