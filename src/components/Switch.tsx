@@ -210,6 +210,11 @@ export function Switch({id, data}) {
 						handleToggleSwitchBlock={handleToggleSwitchBlock}
 					/>
 				))}
+				<>
+				{!nodesData.length && (
+					<div>No inputs nodes.</div>
+				)}
+				</>
 			</div>
 			<Handle type="source" position={Position.Right} />
 		</div>
