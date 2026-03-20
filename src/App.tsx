@@ -19,6 +19,7 @@ import { TextUpdaterNode } from './components/TextUpdaterNode'
 import { CombineNode } from './components/CombineNode'
 import { Switch } from './components/Switch'
 import { Theme } from './components/Theme'
+import { ColorPicker } from './components/ColorPicker'
 
 import { getInitialNodes, getInitialEdges } from './utils'
 import { NODE_TYPES, EDGE_TYPES } from './constants'
@@ -61,7 +62,8 @@ export default function App() {
           [NODE_TYPES.RANDOM_NUMBER]: RandomNumber,
           [NODE_TYPES.COMBINE]: CombineNode,
           [NODE_TYPES.SWITCH]: Switch,
-          [NODE_TYPES.THEME]: Theme
+          [NODE_TYPES.THEME]: Theme,
+          [NODE_TYPES.COLOR_PICKER]: ColorPicker,
         }}
         edgeTypes={{
           [EDGE_TYPES.EXAMPLE_CUSTOM_EDGE]: ExampleCustomEdge

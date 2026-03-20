@@ -61,7 +61,17 @@ export function getInitialNodes() {
 				x: 400, y: -150
 			},
 			data: null
-		}
+		},
+		{
+			id: `${NODE_TYPES.COLOR_PICKER}${SEP}1`,
+			type: NODE_TYPES.COLOR_PICKER,
+			position: {
+				x: 0, y: 350
+			},
+			data: {
+				value: 223
+			}
+		},
 	]
 }
 

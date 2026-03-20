@@ -13,7 +13,7 @@ export function Theme({ id }) {
 	return (
 		<div className="basic-node">
 			<label>Theme</label>
-			<Handle type="source" position={Position.Left} />
+			<Handle type="target" position={Position.Left} />
 
 			<div css={css`display: flex`}>
 

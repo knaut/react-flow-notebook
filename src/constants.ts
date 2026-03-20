@@ -4,7 +4,8 @@ export const NODE_TYPES = {
   RANDOM_NUMBER: 'randomNumber',
   COMBINE: 'combine',
   SWITCH: 'switch',
-  THEME: 'theme'
+  THEME: 'theme',
+  COLOR_PICKER: 'colorPicker'
 } as const
 
 export const EDGE_TYPES = {
