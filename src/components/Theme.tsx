@@ -8,7 +8,9 @@ export function Theme({ id }) {
 
 	const nodesData = useNodesData(connections.map(c => c.source))
 
-	console.log('Theme', nodesData)
+	// console.log('Theme', nodesData)
+
+	const color = nodesData[0]?.data?.value || 'no value'
 
 	return (
 		<div className="basic-node">
@@ -31,7 +33,7 @@ export function Theme({ id }) {
 					<div css={css`
 						flex-grow: 1;
 					`}>
-						<input value={"no value"} id="text" name="text" className="nodrag"/>
+						<input value={color} id="text" name="text" className="nodrag"/>
 					</div>
 				</div>
 

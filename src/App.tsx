@@ -52,7 +52,7 @@ export default function App() {
   )
 
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div data-color-mode='dark' style={{ width: '100vw', height: '100vh' }}>
       <ReactFlow
         colorMode="dark"
         connectionLineType="smoothstep"
