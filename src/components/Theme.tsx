@@ -1,15 +1,23 @@
+import { useEffect } from 'react'
 import { Handle, Position, useNodeConnections, useNodesData } from '@xyflow/react'
 import { css } from '@emotion/react'
 import { createPortal } from 'react-dom'
+import { useStore } from '../store/useStore'
 
 export function Theme({ id }) {
+	const { theme, setTheme } = useStore()
 	const connections = useNodeConnections({
 		handleType: 'target'
 	})
 
 	const nodesData = useNodesData(connections.map(c => c.source))
-
 	const color = nodesData[0]?.data?.value || 'no value'
+
+	useEffect(() => {
+		setTheme({
+			nodeColor: color
+		})
+	}, [color])
 
 	return (
 		<div className="basic-node">
@@ -32,19 +40,21 @@ export function Theme({ id }) {
 					<div css={css`
 						flex-grow: 1;
 					`}>
-						<input value={color} id="text" name="text" className="nodrag"/>
+						<input readOnly value={color} id="text" name="text" className="nodrag"/>
 					</div>
 				</div>
 
 			</div>
-			{createPortal(
+			{/*{createPortal(
 				<style type="text/css">
-					{`.react-flow__node > .basic-node {
-						background: ${color} !important;
-					}`}
+					{`
+						.react-flow__node > .basic-node {
+							background: ${color} !important;
+						}
+					`}
 				</style>,
 				document.body
-			)}
+			)}*/}
 		</div>
 	)
 }

@@ -20,7 +20,7 @@ export function ColorPicker({ id, value }) {
 	}, [])
 
 	useEffect(() => {
-		updateNodeData(id, { value: hex})
+		updateNodeData(id, { value: hex })
 	}, [])
 
 	return (

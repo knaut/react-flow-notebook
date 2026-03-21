@@ -26,6 +26,12 @@ export const useStore = create((set, get) => ({
   },
   setEdges: edges => {
     set({ edges })
+  },
+  theme: {
+    nodeColor: null
+  },
+  setTheme: theme => {
+    set({ theme })
   }
 }))
 
