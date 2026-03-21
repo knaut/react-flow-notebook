@@ -16,6 +16,7 @@ function PaletteSwatch({ label, color }) {
 		`}>
 			<div css={css`
 				padding: 0 12px 0 0;
+				width: 140px;
 			`}>
 				{camelCaseToCapitalizeWithSpaces(label)}:
 			</div> 
@@ -29,7 +30,7 @@ function PaletteSwatch({ label, color }) {
 			`}>
 				<div css={css`
 					background: ${color};
-					height: 30px;
+					height: 20px;
 					width: 100%;
 					border-radius: 3px;
 				`}>
@@ -45,8 +46,8 @@ function PaletteSwatch({ label, color }) {
 	)
 }
 
-export function ThemePalette({ id }) {
-	console.log(themes)
+export function ThemePalette({ id, data }) {
+	// console.log(themes)
 
 	const { theme, setTheme } = useStore()
 	const connections = useNodeConnections({
@@ -56,23 +57,46 @@ export function ThemePalette({ id }) {
 	const nodesData = useNodesData(connections.map(c => c.source))
 	const color = nodesData[0]?.data?.value || 'no value'
 
+	console.log(nodesData)
+
 	useEffect(() => {
 		setTheme({
 			nodeColor: color
 		})
 	}, [color])
 
+	const themePalette = themes[data.value];
+
 	return (
 		<div className="basic-node">
-			<label>Theme Palette</label>
-			<Handle type="target" position={Position.Left} />
+			<label>Theme Palette: <span>{data.value}</span></label>
+			{/*<Handle type="target" position={Position.Left} />*/}
 
-			<div css={css`display: flex`}>
+			<div css={css`
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			`}>
 
-				<PaletteSwatch
+				{/*<PaletteSwatch
 					label={'nodeColor'}
 					color={color}
-				/>
+				/>*/}
+
+				{Object.keys(themePalette).map((key, index) => (
+					<>
+						<Handle
+							type="target"
+							position={Position.Left}
+							css={css`top: calc(${index * 12.5}% + 50px)`} 
+							id={`${data.value}_${key}`}
+						/>
+						<PaletteSwatch
+							label={key}
+							color={themePalette[key]}
+						/>
+					</>
+				))}
 
 			</div>
 			{/*{createPortal(

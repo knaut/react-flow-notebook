@@ -20,10 +20,20 @@ export function getInitialNodes() {
 			id: `${NODE_TYPES.THEME_PALETTE}${SEP}1`,
 			type: NODE_TYPES.THEME_PALETTE,
 			position: {
-				x: 750, y: 300
+				x: 500, y: 300
 			},
 			data: {
-				value: false
+				value: 'SciFi'
+			}
+		},
+		{
+			id: `${NODE_TYPES.THEME_PALETTE}${SEP}2`,
+			type: NODE_TYPES.THEME_PALETTE,
+			position: {
+				x: 500, y: 700
+			},
+			data: {
+				value: 'Cappucino'
 			}
 		},
 		{
