@@ -1,5 +1,15 @@
 import { NODE_TYPES, EDGE_TYPES, SEP } from './constants'
 
+export function camelCaseToCapitalizeWithSpaces(camelCaseString) {
+  const spacedString = camelCaseString.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+  const capitalizedString =
+    spacedString.charAt(0).toUpperCase() + spacedString.slice(1);
+
+  return capitalizedString;
+}
+
+
 export function randomInteger() {
 	return Math.floor((Math.random() * 10) * (Math.random() * 100))
 }
@@ -7,8 +17,8 @@ export function randomInteger() {
 export function getInitialNodes() {
 	return  [
 		{
-			id: `${NODE_TYPES.THEME}${SEP}1`,
-			type: NODE_TYPES.THEME,
+			id: `${NODE_TYPES.THEME_PALETTE}${SEP}1`,
+			type: NODE_TYPES.THEME_PALETTE,
 			position: {
 				x: 750, y: 300
 			},

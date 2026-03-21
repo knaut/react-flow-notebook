@@ -4,7 +4,7 @@ export const NODE_TYPES = {
   RANDOM_NUMBER: 'randomNumber',
   COMBINE: 'combine',
   SWITCH: 'switch',
-  THEME: 'theme',
+  THEME_PALETTE: 'themePalette',
   COLOR_PICKER: 'colorPicker'
 } as const
 
