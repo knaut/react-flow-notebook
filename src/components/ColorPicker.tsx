@@ -24,7 +24,7 @@ export function ColorPicker({ id, value }) {
 	}, [])
 
 	return (
-		<div className="basic-node">
+		<div className="basic-node" css={css`min-width: 80px !important;`}>
 			<label>Color Picker</label>
 
 			<Handle type="source" position={Position.Right} />

@@ -13,6 +13,8 @@ import '@xyflow/react/dist/style.css'
 import './additional.css'
 import '@radix-ui/themes/styles.css'
 
+import { useShallow } from 'zustand/react/shallow'
+
 import { NumberInput } from './components/NumberInput'
 import { RandomNumber } from './components/RandomNumber'
 import { ExampleCustomEdge } from './components/ExampleCustomEdge'
@@ -27,29 +29,19 @@ import { NODE_TYPES, EDGE_TYPES } from './constants'
 
 import { Theme as RadixTheme } from '@radix-ui/themes'
 
+import { useStore } from './store/useStore'
+
+const selector = state => ({
+  nodes: state.nodes,
+  edges: state.edges,
+  onNodesChange: state.onNodesChange,
+  onEdgesChange: state.onEdgesChange,
+  onConnect: state.onConnect
+})
+
 export default function App() {
-  const [nodes, setNodes] = useState(getInitialNodes())
-  const [edges, setEdges] = useState(getInitialEdges())
-
-  const onNodesChange = useCallback(
-    changes => setNodes(
-      nodesSnapshot => applyNodeChanges(changes, nodesSnapshot)
-    ),
-    [], 
-  )
-
-  const onEdgesChange = useCallback(
-    changes => setEdges(
-      edgesSnapshot => applyEdgeChanges(changes, edgesSnapshot)
-    ),
-    [],
-  )
-  
-  const onConnect = useCallback(
-    params => setEdges(
-      edgesSnapshot => addEdge({ ...params, type: EDGE_TYPES.EXAMPLE_CUSTOM_EDGE }, edgesSnapshot)
-    ),
-    []
+  const { nodes, edges, onNodesChange, onEdgesChange, onConnect } = useStore(
+    useShallow(selector)
   )
 
   return (
