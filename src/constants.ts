@@ -5,7 +5,8 @@ export const NODE_TYPES = {
   COMBINE: 'combine',
   SWITCH: 'switch',
   THEME_PALETTE: 'themePalette',
-  COLOR_PICKER: 'colorPicker'
+  COLOR_PICKER: 'colorPicker',
+  THEME_RENDERER: 'themeRenderer'
 } as const
 
 export const EDGE_TYPES = {

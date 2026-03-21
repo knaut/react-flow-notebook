@@ -24,6 +24,7 @@ import { CombineNode } from './components/CombineNode'
 import { Switch } from './components/Switch'
 import { ThemePalette } from './components/ThemePalette'
 import { ColorPicker } from './components/ColorPicker'
+import { ThemeRenderer } from './components/ThemeRenderer'
 
 import { getInitialNodes, getInitialEdges } from './utils'
 import { NODE_TYPES, EDGE_TYPES } from './constants'
@@ -60,6 +61,7 @@ export default function App() {
               [NODE_TYPES.SWITCH]: Switch,
               [NODE_TYPES.THEME_PALETTE]: ThemePalette,
               [NODE_TYPES.COLOR_PICKER]: ColorPicker,
+              [NODE_TYPES.THEME_RENDERER]: ThemeRenderer,
             }}
             edgeTypes={{
               [EDGE_TYPES.EXAMPLE_CUSTOM_EDGE]: ExampleCustomEdge

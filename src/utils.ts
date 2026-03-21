@@ -26,6 +26,16 @@ export function randomInteger() {
 export function getInitialNodes() {
 	return  [
 		{
+			id: `${NODE_TYPES.THEME_RENDERER}${SEP}1`,
+			type: NODE_TYPES.THEME_RENDERER,
+			position: {
+				x: 1000, y: 300
+			},
+			data: {
+				value: 'SciFi'
+			}
+		},
+		{
 			id: `${NODE_TYPES.THEME_PALETTE}${SEP}1`,
 			type: NODE_TYPES.THEME_PALETTE,
 			position: {

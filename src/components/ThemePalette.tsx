@@ -49,7 +49,7 @@ function PaletteSwatch({ label, color }) {
 export function ThemePalette({ id, data }) {
 	// console.log(themes)
 
-	const { theme, setTheme } = useStore()
+	// const { theme, setTheme } = useStore()
 	const connections = useNodeConnections({
 		handleType: 'target'
 	})
