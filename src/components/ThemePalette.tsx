@@ -3,7 +3,7 @@ import { Handle, Position, useNodeConnections, useNodesData } from '@xyflow/reac
 import { css } from '@emotion/react'
 import { createPortal } from 'react-dom'
 import { useStore } from '../store/useStore'
-import { camelCaseToCapitalizeWithSpaces } from '../utils'
+import { camelCaseToCapitalizeWithSpaces, sanitizeCssValue } from '../utils'
 
 import * as themes from '../themes'
 
@@ -29,7 +29,7 @@ function PaletteSwatch({ label, color }) {
 				border-radius: 6px;	/* use a variable here */
 			`}>
 				<div css={css`
-					background: ${color};
+					background: ${sanitizeCssValue(color)};
 					height: 20px;
 					width: 100%;
 					border-radius: 3px;
@@ -38,7 +38,7 @@ function PaletteSwatch({ label, color }) {
 				</div>
 			</div>
 			<div css={css`
-				width: 80px;
+				width: 120px;
 			`}>
 				<input readOnly value={color} id="text" name="text" className="nodrag"/>
 			</div>
@@ -57,31 +57,32 @@ export function ThemePalette({ id, data }) {
 	const nodesData = useNodesData(connections.map(c => c.source))
 	const color = nodesData[0]?.data?.value || 'no value'
 
-	console.log(nodesData)
+	// console.log(nodesData)
 
-	useEffect(() => {
-		setTheme({
-			nodeColor: color
-		})
-	}, [color])
+	// this line should go in a theme renderer/switcher
+	// useEffect(() => {
+	// 	setTheme({
+	// 		nodeColor: color
+	// 	})
+	// }, [color])
 
 	const themePalette = themes[data.value];
 
 	return (
 		<div className="basic-node">
 			<label>Theme Palette: <span>{data.value}</span></label>
-			{/*<Handle type="target" position={Position.Left} />*/}
+
+			<Handle
+				type="source"
+				position={Position.Right}
+				// id={`${data.value}_output`}
+			/>
 
 			<div css={css`
 				display: flex;
 				flex-direction: column;
 				gap: 8px;
 			`}>
-
-				{/*<PaletteSwatch
-					label={'nodeColor'}
-					color={color}
-				/>*/}
 
 				{Object.keys(themePalette).map((key, index) => (
 					<>
@@ -99,16 +100,8 @@ export function ThemePalette({ id, data }) {
 				))}
 
 			</div>
-			{/*{createPortal(
-				<style type="text/css">
-					{`
-						.react-flow__node > .basic-node {
-							background: ${color} !important;
-						}
-					`}
-				</style>,
-				document.body
-			)}*/}
+
+			
 		</div>
 	)
 }

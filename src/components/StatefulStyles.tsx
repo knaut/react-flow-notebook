@@ -1,14 +1,6 @@
 import { useEffect } from 'react'
 import { useStore } from '../store/useStore'
-
-function sanitizeCssValue( string ) {
-  if (string?.startsWith('--')) {
-    // is a css var
-    return `var(${string})`
-  } else {
-    return string
-  }
-}
+import { sanitizeCssValue } from '../utils'
 
 export function StatefulStyles({ id }) {
   const { theme, setTheme } = useStore()

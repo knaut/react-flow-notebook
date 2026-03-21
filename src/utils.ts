@@ -1,5 +1,14 @@
 import { NODE_TYPES, EDGE_TYPES, SEP } from './constants'
 
+export function sanitizeCssValue( string ) {
+  if (string?.startsWith('--')) {
+    // is a css var
+    return `var(${string})`
+  } else {
+    return string
+  }
+}
+
 export function camelCaseToCapitalizeWithSpaces(camelCaseString) {
   const spacedString = camelCaseString.replace(/([a-z])([A-Z])/g, '$1 $2');
 
