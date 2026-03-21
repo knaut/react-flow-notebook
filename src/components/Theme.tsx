@@ -1,5 +1,6 @@
 import { Handle, Position, useNodeConnections, useNodesData } from '@xyflow/react'
 import { css } from '@emotion/react'
+import { createPortal } from 'react-dom'
 
 export function Theme({ id }) {
 	const connections = useNodeConnections({
@@ -7,8 +8,6 @@ export function Theme({ id }) {
 	})
 
 	const nodesData = useNodesData(connections.map(c => c.source))
-
-	// console.log('Theme', nodesData)
 
 	const color = nodesData[0]?.data?.value || 'no value'
 
@@ -38,6 +37,14 @@ export function Theme({ id }) {
 				</div>
 
 			</div>
+			{createPortal(
+				<style type="text/css">
+					{`.react-flow__node > .basic-node {
+						background: ${color} !important;
+					}`}
+				</style>,
+				document.body
+			)}
 		</div>
 	)
 }
