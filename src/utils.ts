@@ -118,10 +118,43 @@ export function getInitialNodes() {
 			id: `${NODE_TYPES.COLOR_PICKER}${SEP}1`,
 			type: NODE_TYPES.COLOR_PICKER,
 			position: {
-				x: 0, y: 450
+				x: 0, y: 480
 			},
 			data: {
 				value: 'purple'
+			}
+		},
+
+		{
+			id: `${NODE_TYPES.COLOR_PICKER}${SEP}2`,
+			type: NODE_TYPES.COLOR_PICKER,
+			position: {
+				x: 0, y: 610
+			},
+			data: {
+				value: 'cyan'
+			}
+		},
+
+		{
+			id: `${NODE_TYPES.COLOR_PICKER}${SEP}3`,
+			type: NODE_TYPES.COLOR_PICKER,
+			position: {
+				x: 0, y: 740
+			},
+			data: {
+				value: 'yellow'
+			}
+		},
+
+		{
+			id: `${NODE_TYPES.COLOR_PICKER}${SEP}4`,
+			type: NODE_TYPES.COLOR_PICKER,
+			position: {
+				x: 0, y: 870
+			},
+			data: {
+				value: 'aqua'
 			}
 		},
 	]

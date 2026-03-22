@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useMemo } from 'react'
 import { css } from '@emotion/react'
 import { Handle, Position, useReactFlow } from '@xyflow/react'
 import { randomInteger } from '../utils'
@@ -10,18 +10,35 @@ import { EditableInput, EditableInputRGBA, EditableInputHSLA } from '@uiw/react-
 
 import { DropdownMenu } from 'radix-ui'
 
+import throttle from 'lodash/throttle';
+
 export function ColorPicker({ id, data }) {
 	const { updateNodeData } = useReactFlow()
 	const [hex, setHex] = useState(data.value);
+	const [throttledValue, setThrottledValue] = useState('');
+
+	const updateThrottledValue = useMemo(
+    () =>
+      throttle((value) => {
+        setThrottledValue(value);
+        console.log('API call or expensive operation with:', value);
+      }, 100), // Throttle time in milliseconds
+    []
+  );
 
 	const onColorChange = useCallback(color => {
+		console.log('onColorChange')
 		setHex(color.hex)
-		updateNodeData(id, { value: color.hex })
+		updateThrottledValue(color.hex)
 	}, [])
 
 	useEffect(() => {
 		updateNodeData(id, { value: hex })
 	}, [])
+
+	useEffect(() => {
+		updateNodeData(id, { value: hex })
+	}, [throttledValue])
 
 	return (
 		<div className="basic-node" css={css`min-width: 80px !important;`}>

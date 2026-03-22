@@ -101,7 +101,7 @@ export function ThemePalette({ id, data }) {
 			}
 		})
 
-	}, [connections, nodesData])
+	}, [nodesData])
 
 	return (
 		<div className="basic-node">
