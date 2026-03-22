@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Handle, Position, useNodeConnections, useNodesData } from '@xyflow/react'
 import { useStore } from '../store/useStore'
 import { sanitizeCssValue } from '../utils'
@@ -23,8 +24,16 @@ export function ThemeRenderer({ id, data }) {
   let palette = null
   if (Array.isArray(nodesData[0]?.data?.value)) {
     console.log(nodesData)
-    palette = nodesData[0]?.data?.value[0]?.theme.palette
+    palette = nodesData[0]?.data?.value[0]?.theme?.palette
+  } else {
+    palette = nodesData[0]?.data?.value.theme.palette
   }
+
+  useEffect(() => {
+    if (palette) {
+      setTheme(palette)
+    }
+  }, [palette])
 
   return (
     <div className='basic-node'>
