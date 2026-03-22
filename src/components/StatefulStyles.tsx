@@ -4,7 +4,6 @@ import { sanitizeCssValue } from '../utils'
 
 export function StatefulStyles({ id }) {
   const { theme, setTheme } = useStore()
-  console.log(theme)
   const { nodeColor, midColor, edgeColor, edgeControlColor, nodeTextColor, nodeInputValue, mapBackground, mapDots } = theme
 
   return (
@@ -490,7 +489,7 @@ svg pattern circle {
   display: block;
   margin-bottom: 4px;
   font-size: 11px;
-  color: color-mix(in lab, ${sanitizeCssValue(edgeColor)} 50%, black 20%);
+  color: color-mix(in lab, ${sanitizeCssValue(nodeTextColor)} 90%, black 20%);
 }
 
 /* Inputs inside custom nodes */

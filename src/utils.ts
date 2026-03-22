@@ -121,7 +121,7 @@ export function getInitialNodes() {
 				x: 0, y: 450
 			},
 			data: {
-				value: 223
+				value: 'purple'
 			}
 		},
 	]

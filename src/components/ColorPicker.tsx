@@ -10,9 +10,9 @@ import { EditableInput, EditableInputRGBA, EditableInputHSLA } from '@uiw/react-
 
 import { DropdownMenu } from 'radix-ui'
 
-export function ColorPicker({ id, value }) {
+export function ColorPicker({ id, data }) {
 	const { updateNodeData } = useReactFlow()
-	const [hex, setHex] = useState("#fff" || value);
+	const [hex, setHex] = useState(data.value);
 
 	const onColorChange = useCallback(color => {
 		setHex(color.hex)
@@ -55,7 +55,7 @@ export function ColorPicker({ id, value }) {
 				  </DropdownMenu.Portal>
 			  </DropdownMenu.Root>
 		  </div>
-			<div>{value}</div>
+			<div>{data.value}</div>
 		</div>
 	)
 }

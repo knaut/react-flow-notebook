@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import {
 	Handle,
 	Position,
@@ -62,6 +62,47 @@ export function ThemePalette({ id, data }) {
 	const color = nodesData[0]?.data?.value || 'no value'
 	const { palette } = data.value.theme
 
+	const [localPalette, setLocalPalette] = useState(palette)
+
+	useEffect(() => {
+		// for each connection, we have to match the source value to the associated
+		// theme color.
+
+		const newPalette = {
+			...localPalette
+		}
+
+		for (let i = 0; connections.length > i; i++) {
+			const { targetHandle, source } = connections[i]
+			const targetHandleKey = targetHandle.split('_')[1]
+
+			if (newPalette[targetHandleKey]) {
+
+				const handleSourceValue = nodesData.map(node => {
+					if (node.id === source) {
+						
+						newPalette[targetHandleKey] = node.data.value
+
+					}
+				})
+
+			}
+		}
+
+
+		setLocalPalette(newPalette)
+		updateNodeData(id, {
+			value: {
+				theme: {
+					...data.value.theme,
+					palette: newPalette	
+				}
+				
+			}
+		})
+
+	}, [connections, nodesData])
+
 	return (
 		<div className="basic-node">
 			<label>Theme Palette: <span>{data.value.theme.key}</span></label>
@@ -88,7 +129,7 @@ export function ThemePalette({ id, data }) {
 						/>
 						<PaletteSwatch
 							label={key}
-							color={palette[key]}
+							color={localPalette[key]}
 						/>
 					</div>
 				))}

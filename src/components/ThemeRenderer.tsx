@@ -14,24 +14,27 @@ export function ThemeRenderer({ id, data }) {
   // nodesData should be a theme object, else we do nothing (or provide a warning?)
   // additionally, if this comes from a switch, it's an array of values ಠ_ಠ
   let palette = null
-  if (Array.isArray(nodesData[0]?.data?.value)) {
+    if (Array.isArray(nodesData[0]?.data?.value)) {
 
-    for (let i = 0; i < nodesData[0].data.value.length; i++) {
-      const v = nodesData[0].data.value[i]
-      if (v?.theme) {
-        palette = v.theme.palette
+      for (let i = 0; i < nodesData[0].data.value.length; i++) {
+        const v = nodesData[0].data.value[i]
+        if (v?.theme) {
+          palette = v.theme.palette
+        }
       }
+
+    } else {
+      palette = nodesData[0]?.data?.value.theme.palette
     }
 
-  } else {
-    palette = nodesData[0]?.data?.value.theme.palette
-  }
-
   useEffect(() => {
+    
+
+
     if (palette) {
       setTheme(palette)
     }
-  }, [palette])
+  }, [nodesData])
 
   return (
     <div className='basic-node'>
@@ -40,14 +43,14 @@ export function ThemeRenderer({ id, data }) {
         type="target"
         position={Position.Left}
       />
-      {palette ? (
+      {theme ? (
         <div css={css`
           display: flex;
           flex-direction: row;
         `}>
-          {Object.keys(palette).map((key, index) => (
+          {Object.keys(theme).map((key, index) => (
             <div key={key} css={css`
-              background: ${sanitizeCssValue(palette[key])};
+              background: ${sanitizeCssValue(theme[key])};
               height: 40px;
               width: 40px;
             `}>
