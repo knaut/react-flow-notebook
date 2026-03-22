@@ -1,4 +1,5 @@
 import { NODE_TYPES, EDGE_TYPES, SEP } from './constants'
+import * as themes from './themes'
 
 export function sanitizeCssValue( string ) {
   if (string?.startsWith('--')) {
@@ -32,7 +33,7 @@ export function getInitialNodes() {
 				x: 1000, y: 300
 			},
 			data: {
-				value: 'SciFi'
+				value: null
 			}
 		},
 		{
@@ -42,7 +43,13 @@ export function getInitialNodes() {
 				x: 500, y: 300
 			},
 			data: {
-				value: 'SciFi'
+				value: {
+					// in future, this value should be made dynamic
+					theme: {
+						key: 'SciFi',
+						palette: themes['SciFi']
+					}
+				}
 			}
 		},
 		{
@@ -52,7 +59,13 @@ export function getInitialNodes() {
 				x: 500, y: 700
 			},
 			data: {
-				value: 'Cappucino'
+				value: {
+					// in future, this value should be made dynamic
+					theme: {
+						key: 'Cappucino',
+						palette: themes['Cappucino']
+					}
+				}
 			}
 		},
 		{

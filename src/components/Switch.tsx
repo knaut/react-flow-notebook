@@ -95,11 +95,28 @@ function SwitchBlock({ id, data, handleToggleSwitchBlock }) {
 					color: var(--cyan-bright);
 					width: 100%;
 				`}>
-					{data.value}
+					{sanitizeSwitchBlockDataValue(data.value)}
 				</div>
 			</div>
 		</div>
 	)
+}
+
+function sanitizeSwitchBlockDataValue( value ) {
+	// value may be any flow-graph "primitive" i.e. color, theme (grouping of colors), number, text
+	// we need the switch block to display a *relevant* representation of these input types
+	switch (typeof value) {
+	case 'number':
+		return value
+	case 'string':
+		return value
+	case 'object': {
+		// careful! we haven't determined what object-like primitives we could have!
+		// also, wouldn't a *color* pass as a string?
+		return value?.theme?.key
+	}
+	}
+
 }
 
 
@@ -158,7 +175,10 @@ export function Switch({id, data}) {
 	const connections = useNodeConnections({
 		handleType: 'target',
 	})
-	const nodesData = useNodesData(connections.map(c => c.source))
+	const nodesData = useNodesData(connections.map(c => c.source));
+
+	console.log('Switch', nodesData)
+
 	const [internal, setInternal] = useState<SwitchInternal>({});
 
 	const handleToggleSwitchBlock = useCallback((internalUpdate) => {

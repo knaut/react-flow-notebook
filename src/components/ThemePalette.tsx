@@ -1,5 +1,11 @@
-import { useEffect } from 'react'
-import { Handle, Position, useNodeConnections, useNodesData } from '@xyflow/react'
+import { useEffect, useCallback } from 'react'
+import {
+	Handle,
+	Position,
+	useNodeConnections,
+	useNodesData,
+	useReactFlow
+} from '@xyflow/react'
 import { css } from '@emotion/react'
 import { createPortal } from 'react-dom'
 import { useStore } from '../store/useStore'
@@ -47,14 +53,14 @@ function PaletteSwatch({ label, color }) {
 }
 
 export function ThemePalette({ id, data }) {
-	// console.log(themes)
-
+	const { updateNodeData } = useReactFlow()
 	// const { theme, setTheme } = useStore()
 	const connections = useNodeConnections({
 		handleType: 'target'
 	})
 
 	const nodesData = useNodesData(connections.map(c => c.source))
+
 	const color = nodesData[0]?.data?.value || 'no value'
 
 	// console.log(nodesData)
@@ -66,11 +72,32 @@ export function ThemePalette({ id, data }) {
 	// 	})
 	// }, [color])
 
-	const themePalette = themes[data.value];
+	// const palette = themes[data?.value];
+
+	// console.log(palette, data?.value)
+
+	// const update = useCallback(() => {
+	// 	updateNodeData(id, { value: {		//todo: define these patterns as types
+	// 		theme: {
+	// 			key: data.value,
+	// 			palette
+	// 		}
+	// 	}})
+	// })
+
+	// useEffect(() => {
+	// 	// load in our static theme colors based on key
+	// 	// and add it to our nodesData
+
+	// 	update()
+	// }, [])
+
+	// case: theme palette prepopulated from initial state
+	const { palette } = data.value.theme
 
 	return (
 		<div className="basic-node">
-			<label>Theme Palette: <span>{data.value}</span></label>
+			<label>Theme Palette: <span>{data.value.theme.key}</span></label>
 
 			<Handle
 				type="source"
@@ -84,8 +111,8 @@ export function ThemePalette({ id, data }) {
 				gap: 8px;
 			`}>
 
-				{Object.keys(themePalette).map((key, index) => (
-					<>
+				{Object.keys(palette).map((key, index) => (
+					<div key={key}>
 						<Handle
 							type="target"
 							position={Position.Left}
@@ -94,9 +121,9 @@ export function ThemePalette({ id, data }) {
 						/>
 						<PaletteSwatch
 							label={key}
-							color={themePalette[key]}
+							color={palette[key]}
 						/>
-					</>
+					</div>
 				))}
 
 			</div>
