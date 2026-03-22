@@ -177,8 +177,6 @@ export function Switch({id, data}) {
 	})
 	const nodesData = useNodesData(connections.map(c => c.source));
 
-	console.log('Switch', nodesData)
-
 	const [internal, setInternal] = useState<SwitchInternal>({});
 
 	const handleToggleSwitchBlock = useCallback((internalUpdate) => {

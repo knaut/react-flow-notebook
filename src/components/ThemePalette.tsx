@@ -54,45 +54,12 @@ function PaletteSwatch({ label, color }) {
 
 export function ThemePalette({ id, data }) {
 	const { updateNodeData } = useReactFlow()
-	// const { theme, setTheme } = useStore()
 	const connections = useNodeConnections({
 		handleType: 'target'
 	})
 
 	const nodesData = useNodesData(connections.map(c => c.source))
-
 	const color = nodesData[0]?.data?.value || 'no value'
-
-	// console.log(nodesData)
-
-	// this line should go in a theme renderer/switcher
-	// useEffect(() => {
-	// 	setTheme({
-	// 		nodeColor: color
-	// 	})
-	// }, [color])
-
-	// const palette = themes[data?.value];
-
-	// console.log(palette, data?.value)
-
-	// const update = useCallback(() => {
-	// 	updateNodeData(id, { value: {		//todo: define these patterns as types
-	// 		theme: {
-	// 			key: data.value,
-	// 			palette
-	// 		}
-	// 	}})
-	// })
-
-	// useEffect(() => {
-	// 	// load in our static theme colors based on key
-	// 	// and add it to our nodesData
-
-	// 	update()
-	// }, [])
-
-	// case: theme palette prepopulated from initial state
 	const { palette } = data.value.theme
 
 	return (
@@ -116,8 +83,8 @@ export function ThemePalette({ id, data }) {
 						<Handle
 							type="target"
 							position={Position.Left}
-							css={css`top: calc(${index * 12.5}% + 50px)`} 
-							id={`${data.value}_${key}`}
+							css={css`top: calc(${index * 11.25}% + 50px)`} 
+							id={`${data.value.theme.key}_${key}`}
 						/>
 						<PaletteSwatch
 							label={key}

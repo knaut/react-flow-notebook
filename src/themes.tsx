@@ -48,7 +48,8 @@ interface ThemeVars {
 // we could use hex vals here, but for semantic clarity we'll use css vars
 export const SciFi = {
   nodeColor: '--purple-dark',
-  edgeColor: '--purple-light',
+  midColor: '--purple-mid',
+  edgeColor: '--green-bright',
   edgeControlColor: '--red-bright',
   nodeTextColor: '--green-bright',
   nodeInputColor: '--cyan-bright',
@@ -59,6 +60,7 @@ export const SciFi = {
 
 export const Cappucino = {
   nodeColor: '--beige',
+  midColor: '#444',
   edgeColor: '--teal-dark',
   edgeControlColor: '--pistachio',
   nodeTextColor: '--coffee',

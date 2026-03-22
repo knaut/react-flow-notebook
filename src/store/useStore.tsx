@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { addEdge, applyNodeChanges, applyEdgeChanges } from '@xyflow/react'
 import { getInitialNodes, getInitialEdges } from '../utils'
 import { EDGE_TYPES } from '../constants'
+import * as themes from '../themes'
 
 export const useStore = create((set, get) => ({
   nodes: getInitialNodes(),
@@ -28,7 +29,7 @@ export const useStore = create((set, get) => ({
     set({ edges })
   },
   theme: {
-    nodeColor: null
+    ...themes['SciFi']
   },
   setTheme: theme => {
     set({ theme })
