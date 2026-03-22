@@ -53,8 +53,8 @@ export const SciFi = {
   nodeTextColor: '--green-bright',
   nodeInputColor: '--cyan-bright',
 
-  mapBackground: null,
-  mapDots: null
+  mapBackground: '#141414',
+  mapDots: '#777'
 }
 
 export const Cappucino = {

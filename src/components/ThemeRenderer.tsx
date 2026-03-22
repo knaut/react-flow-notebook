@@ -23,8 +23,16 @@ export function ThemeRenderer({ id, data }) {
 
   let palette = null
   if (Array.isArray(nodesData[0]?.data?.value)) {
-    console.log(nodesData)
-    palette = nodesData[0]?.data?.value[0]?.theme?.palette
+    // console.log(nodesData)
+    // palette = nodesData[0]?.data?.value[0]?.theme?.palette
+
+    for (let i = 0; i < nodesData[0].data.value.length; i++) {
+      const v = nodesData[0].data.value[i]
+      if (v?.theme) {
+        palette = v.theme.palette
+      }
+    }
+
   } else {
     palette = nodesData[0]?.data?.value.theme.palette
   }
@@ -50,6 +58,7 @@ export function ThemeRenderer({ id, data }) {
           display: flex;
           flex-direction: row;
         `}>
+        {console.log(palette)}
           {Object.keys(palette).map((key, index) => (
             <div key={key} css={css`
               background: ${sanitizeCssValue(palette[key])};

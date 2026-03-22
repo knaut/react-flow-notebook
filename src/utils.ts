@@ -2,7 +2,7 @@ import { NODE_TYPES, EDGE_TYPES, SEP } from './constants'
 import * as themes from './themes'
 
 export function sanitizeCssValue( string ) {
-  if (string?.startsWith('--')) {
+  if (string && string.startsWith('--')) {
     // is a css var
     return `var(${string})`
   } else {
