@@ -3,6 +3,8 @@ A lab repo to develop new features in React Flow, prototype ideas, and experimen
 
 React Flow is a library for creating [patch-and-connector style UIs in React](https://reactflow.dev/).
 
+https://github.com/user-attachments/assets/8e9685dd-5e3f-41cd-8c02-f2b9bbd6d2d9
+
 ## What does this project do?
 Connect nodes together to gracefully compute different types of values in realtime. Currently supported types are **numbers, strings, colors, and color palettes**. 
 
